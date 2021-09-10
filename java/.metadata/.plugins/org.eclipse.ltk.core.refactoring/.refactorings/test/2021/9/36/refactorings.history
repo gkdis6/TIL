@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;test/src/day08/SleepThread.java&apos; to &apos;SleepThreadMain.java&apos;" description="Rename resource &apos;SleepThread.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/day08/SleepThread.java" name="SleepThreadMain.java" stamp="1630471037937" updateReferences="true"/>
+</session>

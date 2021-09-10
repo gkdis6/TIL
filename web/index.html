@@ -1,0 +1,57 @@
+<head>
+  <title>WEB1 - Welcome</title>
+  <meta charset="utf-8">
+  <style>
+    a {
+      color:black;
+      text-decoration: none;
+    }
+    li {
+      font-size:45px;
+    }
+    h1 {
+      text-align:center;
+    }
+    .jb-xx-large {font-size: xx-large;}
+    .active {
+      color:red;
+    }
+    .saw {
+      color:gray;
+    }
+    #active {
+      color:red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1><a href="index.html"><p class="jb-xx-large">상용</p></a></h1>
+  <ol>
+    <li><a href="1.html" class="saw">D-day</a><br>
+    <li><a href="2.html" class="saw" id="active">web</a><br><!--id가 class보다 강하다, id 값은 한번만 나와야함 중복되면 -->
+    <li><a href="3.html" style="color:red;text-decoration:underline">여행지</a><br>
+    <li><a href="4.html" class="saw active">놀러가고 싶다</a><br><!--가까운 class가 더 영향력을 가짐-->
+  </ol>
+<!--
+  <h1><a href="index.html"><font color="red">상용</font></a></h1>
+  <ol>
+    <li><a href="1.html"><font color="red">D-day</font></a><br>
+    <li><a href="2.html"><font color="red">사진</font></a><br>
+    <li><a href="3.html"><font color="red">여행지</font></a><br>
+    <li><a href="4.html"><font color="red">놀러가고 싶다</font></a><br>
+  </ol>
+  -->
+
+  <h2>D-day</h2>
+  여기가<strong><u><a href="2.html" target="_blank" title="hello">하이퍼링크</a></u></strong> 입니다.
+
+  <h1>Heading level 1</h1>
+  <h2>Heading level 2</h2>
+  <h3>Heading level 3</h3>
+  <h4>Heading level 4</h4>
+  <h5>Heading level 5</h5>
+  <h6>Heading level 6</h6>
+
+  <img src="coding.jpg" width="100%">
+</body>

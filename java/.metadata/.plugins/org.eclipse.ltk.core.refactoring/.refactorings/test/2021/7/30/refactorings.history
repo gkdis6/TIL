@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;test/src/chap04/ㄹㅁㅊ새갸미.java&apos; to &apos;Factorial.java&apos;" description="Rename resource &apos;ㄹㅁㅊ새갸미.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/chap04/ㄹㅁㅊ새갸미.java" name="Factorial.java" stamp="1627027261523" updateReferences="true"/>
+</session>

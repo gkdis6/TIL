@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      #grid{
+        border:5px solid pink;
+        display:grid;
+        grid-template-columns:150px 1fr;/*2fr 1fr도 가능*/
+      }
+      div{
+        border:5px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid">
+      <div>navigation</div>
+      <!-- 아무 의미 없이 디자인을 위한 태그. block element-->
+      <span>article</span>
+      <!-- 아무 의미 없이 디자인을 위한 태그. inline element-->
+    </div>
+  </body>
+</html>

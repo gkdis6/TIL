@@ -1,0 +1,2 @@
+rootProject.name = "corutine_practice"
+include ':app'

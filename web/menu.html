@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <style>
+        @media (max-width:800px){
+            div{
+                display:none;
+            }
+        }
+        #grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 2fr;
+            height: 300px;
+        }
+
+        #grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-left: 0%;
+        }
+
+        div {
+            border: 5px solid bule;
+        }
+
+        div>div {
+            color: white;
+            background-color: black;
+            font-size: 15px;
+            text-align: center;
+            line-height: 70px;
+        }
+
+        .mega {
+            font-size: 40px;
+        }
+        .hite{
+            font-size: 210px;
+            text-align: right;
+            line-height: 200px;
+        }
+        .tieg{
+            font-size: 60px;
+            text-align: left;
+            padding: 0px;
+            line-height: 65px;
+        }
+
+    </style>
+</head>
+
+<body style="background:black">
+    <div id="grid">
+        <div class="mega">
+            MEGA
+        </div>
+        <div>
+            회사소개
+        </div>
+        <div>
+            주요사업
+        </div>
+        <div>
+            요금제
+        </div>
+        <div>
+            이벤트
+        </div>
+        <div>
+            고객지원
+        </div>
+        <div>
+            사이트맵
+        </div>
+    </div>
+    <div id="grid2">
+        <div class="hite">
+            01
+        </div>
+        <div class="tieg">Let's Try<br>Cloud<br>System
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+package day03_test;
+
+class Score{
+	//이름 국어 영어 수학 총점 평균
+	String name;
+	int kuk;
+	int eng;
+	int math;
+	int total;
+	double avg;
+}
+
+public class ScoreCalc {
+
+	public static void main(String[] args) {
+		// score 객체 3개 생성
+		
+		Score m1 = new Score();
+		Score m2 = new Score();
+		Score m3 = new Score();
+		
+		m1.name = "박상용";
+		m1.kuk = 92;
+		m1.eng = 86;
+		m1.math = 100;
+		m1.total = m1.kuk + m1.eng + m1.math;
+		m1.avg = m1.total/3;
+		
+		m2.name = "문주현";
+		m2.kuk = 96;
+		m2.eng = 100;
+		m2.math = 85;
+		m2.total = m2.kuk + m2.eng + m2.math;
+		m2.avg = m2.total/3;
+		
+		m3.name = "송광석";
+		m3.kuk = 88;
+		m3.eng = 80;
+		m3.math = 50;
+		m3.total = m3.kuk + m3.eng + m3.math;
+		m3.avg = m3.total/3;
+
+		System.out.println("--------------------");
+		System.out.println("--- "+m1.name+" 시험 ---");
+		System.out.println("--------------------");
+		System.out.println("성명 : " + m1.name); 
+		System.out.println("국어점수 : " + m1.kuk);
+		System.out.println("영어점수 : " + m1.eng);
+		System.out.println("수학점수 : " + m1.math);
+		System.out.println("합계 : " + m1.total);
+		System.out.println("평균 : " + m1.avg);
+		
+		System.out.println("--------------------");
+		System.out.println("--- "+m2.name+" ---");
+		System.out.println("--------------------");
+		System.out.println("성명 : " + m2.name); 
+		System.out.println("국어점수 : " + m2.kuk);
+		System.out.println("영어점수 : " + m2.eng);
+		System.out.println("수학점수 : " + m2.math);
+		System.out.println("합계 : " + m2.total);
+		System.out.println("평균 : " + m2.avg);
+		
+		System.out.println("--------------------");
+		System.out.println("--- "+m3.name+" ---");
+		System.out.println("--------------------");
+		System.out.println("성명 : " + m3.name); 
+		System.out.println("국어점수 : " + m3.kuk);
+		System.out.println("영어점수 : " + m3.eng);
+		System.out.println("수학점수 : " + m3.math);
+		System.out.println("합계 : " + m3.total);
+		System.out.println("평균 : " + m3.avg);
+	}
+
+}

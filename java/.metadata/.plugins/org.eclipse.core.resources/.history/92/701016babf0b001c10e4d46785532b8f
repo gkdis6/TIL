@@ -1,0 +1,13 @@
+package utility;
+
+import java.sql.Connection;
+
+public class Open {
+	private static Connection con;
+	
+	public static Connection getConnection() throws ClassNotFoundException {
+		Class.forName(Constant.DRIVER);
+		
+		return con;
+	}
+}

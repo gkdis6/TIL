@@ -1,0 +1,45 @@
+package address;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import utility.DBClose;
+import utility.Open;
+
+public class AddressDAO {
+
+	/**
+	 * 레코드 생성 
+	 * @param dto - 생성될 데이터
+	 * @return true - 생성 성공, false - 생성 실패
+	 */
+	public boolean create(AddressDTO dto) {
+		boolean flag = false;
+		Connection con = Open.getConnection();
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("INSERT INTO address (name, handphone, address) ");
+		sql.append("values(?,?,?)");
+		try {
+			prst = con.prepareStatement(sql.toString());
+			prst.setString(1, dto.getName());
+			prst.setString(2, dto.getHandphone());
+			prst.setString(3, dto.getAddress());
+			
+			int cnt = prst.executeUpdate();
+			
+			if(cnt > 0) flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(prst, con);
+		}
+		
+		return flag;
+	}
+	public void read
+	update
+	delete
+}

@@ -1,0 +1,25 @@
+package address;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class AddressDAO {
+
+	/**
+	 * 레코드 생성 
+	 * @param dto - 생성될 데이터
+	 * @return true - 생성 성공, false - 생성 실패
+	 */
+	public boolean create(AddressDTO dto) {
+		boolean flag = false;
+		Connection con = null;
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		
+		Class.forName(driver);
+		return flag;
+	}
+	public void read
+	update
+	delete
+}

@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/allButton"
+    android:layout_width="100sp"
+    android:layout_height="100sp"
+    android:layout_margin="5dp" >
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_gravity="center" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_gravity="center"
+        android:rotation="-90"
+        android:translationX="30sp"
+        android:translationZ="50sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</FrameLayout>
