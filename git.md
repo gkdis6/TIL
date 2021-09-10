@@ -110,3 +110,22 @@ git 기반의 저장소 서비스
 | 특정폴더/    | 특정폴더 무시                      |
 | *.png        | 특정 확장자 무시                   |
 | !profile.png | Profile.png는 무시하지 않기        |
+
+
+
+## git branch
+
+| git branch {branch_name}      | 브랜치 생성         |
+| ----------------------------- | ------------------- |
+| git checkout {branch_name}    | 브랜치 이동         |
+| git checkout -b {branch_name} | 브랜치 생성 및 이동 |
+| git branch                    | 브랜치 목록 출력    |
+| git branch -d {branch_name}   | 브랜치 삭제         |
+
+
+
+## git merge
+
+| git merge {branch_name} | 합칠 곳에서 입력하면 브랜치가 합쳐지고 기준이 되는 브랜치로부터 단발적인 변화만 있다면 fast forward로 충돌이 나지 않고 합쳐진다. |
+| ----------------------- | ------------------------------------------------------------ |
+
