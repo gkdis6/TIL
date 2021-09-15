@@ -3,6 +3,7 @@ package utility;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class DBClose {
 
@@ -18,14 +19,26 @@ public class DBClose {
 			e.printStackTrace();
 		}
 	}
-	public static void close(PreparedStatement prst, Connection con, ResultSet rs) {
+	public static void close(Statement stmt, Connection con, ResultSet rs) {
 		try {
 			if(rs != null) rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-			if(prst != null) prst.close();
+			if(stmt != null) stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			if(con != null) con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void close(Statement stmt, Connection con) {
+		try {
+			if(stmt != null) stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

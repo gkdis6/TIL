@@ -1,6 +1,0 @@
-package utility;
-
-public class Constant {
-	public static final String DRIVER= "com.mysql.cj.jdbc.Driver";
-	public static final String url = "jdbc:mysql://localhost:3306/javadb?useUnicode=true&characterEncoding=utf8";
-}
