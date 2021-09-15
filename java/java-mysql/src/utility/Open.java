@@ -18,4 +18,16 @@ public class Open {
 		
 		return con;
 	}
+	
+	public static Connection getORACLEConnection() {
+		try {
+			Class.forName(Constant.ORACLEDRIVER);
+			
+			con = DriverManager.getConnection(Constant.ORACLEURL, Constant.ORACLEUSER, Constant.ORACLEPASSWORD);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return con;
+	}
 }

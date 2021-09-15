@@ -19,14 +19,6 @@ public class CompareExam {
 		for (String string : str2) {
 			System.out.println(string);
 		}
-		switch (key) {
-		case value: {
-			
-			yield type;
-		}
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + key);
-		}
 	}
 
 }

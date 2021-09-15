@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
-    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
     <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
     <fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
@@ -40,7 +38,6 @@
     <fullyQualifiedTypeName name="day05.ThisExam"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="Car"/>
-    <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="com.mysql.cj.exceptions.RSAException"/>
     <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
     <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="address.AddressDAO"/>
     <fullyQualifiedTypeName name="address.AddressDTO"/>
     <fullyQualifiedTypeName name="book.BookDTO"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.xdevapi.InsertStatement"/>
+    <fullyQualifiedTypeName name="book.BookTest"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
 </qualifiedTypeNameHistroy>

@@ -1,4 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;java-mysql/src/book/BookDAO.java&apos;" deleteContents="false" description="Delete resource &apos;java-mysql/src/book/BookDAO.java&apos;" element1="/java-mysql/src/book/BookDAO.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1631671547437"/>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;java-mysql/src/book/BookDAO.java&apos;" deleteContents="false" description="Delete resource &apos;java-mysql/src/book/BookDAO.java&apos;" element1="/java-mysql/src/book/BookDAO.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1631671547437"/>&#x0A;<refactoring comment="Delete resource &apos;DB&apos;" deleteContents="false" description="Delete resource &apos;DB&apos;" element1="/DB" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1631690122736"/>
 </session>

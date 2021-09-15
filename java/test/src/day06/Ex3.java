@@ -1,7 +1,5 @@
 package day06;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 
 public class Ex3 {
 
@@ -10,11 +8,7 @@ public class Ex3 {
 		String password = " ";
 		String url = " ";
 		
-		Connection con = null;
 		
-		try {
-			con = DriverManager
-		}
 		
 		
 	}
