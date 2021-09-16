@@ -69,3 +69,38 @@ printAgain();
 
 const sumAgain = sum;
 console.log(sumAgain(1,3));
+
+function randomQuiz(answer, printYes, printNo) {
+    if(answer === "love you"){
+        printYes();
+    }else{
+        printNo();
+    }
+}
+
+const printYes = function(){
+    console.log("Yes!");
+}
+
+const printNo = function(){
+    console.log("No !");
+}
+
+randomQuiz("wrong", printYes, printNo);
+randomQuiz("love you", printYes, printNo);
+
+//const simplePrint = function(){
+//     console.log("simplePrint");
+// }
+
+const simplePrint = () => console.log("simplePrint");
+
+simplePrint();
+
+const add = (a,b) => a+b;
+
+console.log(add(100,200));
+
+(function hello(){
+    console.log("IIFE");
+})()

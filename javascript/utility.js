@@ -1,7 +1,15 @@
 function p(str){
-    document.write(str);
+    if(typeof str === undefined){
+        document.write(`<br>`);
+    }else{
+        document.write(`${str}`);
+    }
 }
  
 function pl(str){
-    document.write(str + "<br>");
+    if(typeof str === undefined){
+        document.write(`<br>`);
+    }else{
+        document.write(`${str} <br>`);
+    }
 }    
