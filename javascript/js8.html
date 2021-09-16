@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <H2>continue의 사용</H2>
+    <HR>
+
+    <script type="text/javascript">
+        var i;
+        i = 0;
+        while (i < 10) {
+            i++;
+
+            // 짝수만 출력
+            if (i % 2 == 1) continue;
+            pl(i);
+        }
+
+        function pl(str) {
+            document.write(`${str} <br>`);
+        }
+    </script>
+
+</body>
+
+</html>

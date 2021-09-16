@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <H2>성적 처리</H2>
+    <HR>
+
+    <script type="text/javascript">
+        // 국어, 영어, 수학 점수 입력받기
+        var kuk = prompt("국어 점수를 입력하세요...", 0); // 문자열로 처리됨.
+        var eng = prompt("영어 점수를 입력하세요...", 0);
+        var mat = prompt("수학 점수를 입력하세요...", 0);
+
+        // 총점과 평균을 출력하는 예제를 작성하세요
+        var tot = parseInt(kuk) + parseInt(eng) + parseInt(mat);
+        var avg = tot / 3;
+
+        var star = '';
+        for (var i = 1; i <= avg / 10; i++) {
+            star = star + '★';
+        }
+
+        document.write("<TABLE width='50%' border='1'>");
+        document.write("  <TR><TH>점수</TH></TR>");
+        document.write("  <TR><TD>국어: " + kuk + "</TD></TR>");
+        document.write("  <TR><TD>영어: " + eng + "</TD></TR>");
+        document.write("  <TR><TD>수학: " + mat + "</TD></TR>");
+        document.write("  <TR><TD>총점: " + tot + "</TD></TR>");
+        document.write("  <TR><TD>평균: " + avg + "</TD></TR>");
+        document.write("  <TR><TD>평가: " + star + "</TD></TR>");
+        document.write("</TABLE>");
+    </script>
+
+</BODY>
+
+</HTML>
