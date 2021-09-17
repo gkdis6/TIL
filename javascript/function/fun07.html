@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // alert("a");
+        // setTimeout(function(){
+        //     alert("b");
+        // }, 0);
+        // alert("c");
+        // // a -> c -> b순으로 처리됨
+
+        // for (var i = 0; i < 3; i++) {
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 0);
+        // }
+
+        // for (var i = 0; i < 3; i++) {
+        //     setTimeout(function () {
+        //         alert(i);
+        //     }, 0);
+        // }
+
+        // [0, 1, 2].forEach((i) => {
+        //     setTimeout(() => {
+        //         console.log(i);
+        //     })
+        // })
+
+
+        function Counter() {
+            this.sum = 0;
+            this.count = 0;
+        }
+        Counter.prototype.add = function (array) {
+            array.forEach(function (entry) {
+                this.sum += entry;
+                ++this.count;
+            }, this);
+            // ^---- 주의
+        };
+
+        var obj = new Counter();
+        obj.add([2, 5, 9]);
+        console.log(obj.count);
+        console.log(obj.sum);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

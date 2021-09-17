@@ -5,16 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script defer src="functions.js"></script>
-    <script src="utility.js"></script>
-    <script src= "object/object.js"></script>
+    <script>
+        var intervalID = setInterval(function(){
+            alert(`<p> ${new Date()} </p>`);
+        }, 1000);
+
+        setTimeout(function(){
+            clearInterval(intervalID);
+        }, 10000);
+    </script>
 </head>
 <body>
     
-    <script>
-        let vara = "aaf";
-        p(vara);
-        pl(vara);
-    </script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <TITLE>자바 스크립트 예제</TITLE>
+    <style>
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="utility.js"></script>
+</head>
+
+<body>
+    <H2>split() 함수</H2>
+    <HR>
+
+    <script>
+        let DTOlist = '가길동, 100, 90/나길동, 100, 90/다길동, 100, 90';
+
+        let arrayDTO = DTOlist.split('/');
+
+        for (let i = 0; i < arrayDTO.length; i++) {
+            pl(`${arrayDTO[i]}`);
+        }
+
+        pl(`<HR>`);
+        pl(`성적 계산 목록 <br>`);
+
+        for (i = 0; i < arrayDTO.length; i++) {
+            let dto = arrayDTO[i];
+            let str = dto.split(',');
+
+            pl(`성명: ${str[0]}`);
+            pl(`영어: ${str[1]}`);
+            pl(`수학: ${str[2]}`);
+
+            let eng = parseInt(str[1]);
+            let mat = parseInt(str[2]);
+
+            pl(`총점: ${eng + mat}`);
+            pl(`평균: ${(eng + mat)/2}`);
+            pl(`-----------------------------`);
+        }
+    </script>
+</body>
+
+</html>

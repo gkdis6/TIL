@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Creating a JavaScript Object</p>
+    <p id="demo"></p>
+    <script>
+        let person = {
+            firstName : "sang",
+            lastName : "park",
+            age : 26,
+            eyecolor : "black"
+        };
+
+        document.getElementById("demo").innerHTML = `${person.firstName} is ${person.age} years old.`;
+        //`${person["firstName"]} is ${person["age"]} years old.`;
+
+        let output = "";
+        // for(let key in person){
+        //     console.log(`${key} is ${person[key]}`);
+        // }
+
+        for(let key in person){
+            output += `● ${key} is ${person[key]} <br>`; //.key를 쓰면 undefined로 나옴
+        }
+        
+        document.getElementById("demo").innerHTML = output;
+    </script>
+</body>
+</html>
