@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        let object = { //속성과 메소드 선언
+            number: 273,
+            string: 'RintIanTta',
+            boolean: true,
+            array: [52, 273, 103, 32],
+            method: function () {
+
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <p id="demo"></p>
+
+    <script>
+        let person = {
+            firstName: "John",
+            lastName: "Doe",
+            id: 5566,
+            fullName: function () {
+                return `${this.firstName} ${this.lastName}`;
+            }
+        };
+
+        document.getElementById("demo").innerHTML = person.fullName();
+    </script>
+
+</body>
+
+</html>

@@ -20,10 +20,10 @@ const user4 = Object.assign({}, user)
 user4.name = "team";
 console.log(user4);
  
-console.log(user);
-console.log(user2);
-console.log(user3);
-console.log(user4);
+// console.log(user);
+// console.log(user2);
+// console.log(user3);
+// console.log(user4);
 
 const fruit1 = {color : 'red'};
 const fruit2 = {color : 'blue', size : 'big'};
