@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="utility.js"></script>
+</head>
+
+<body>
+    <h1>isNaN 사용 예제</h1>
+    <script>
+        let temp1, temp2;
+        temp1 = prompt("값을 입력하세요", 100.5);
+
+        if(isNaN(temp1)){
+            pl(`${temp1} 은 문자이다`);
+        }else{
+            pl(`${temp1} 은 문자가 아닙니다`);
+        }
+
+    </script>
+</body>
+
+</html>

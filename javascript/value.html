@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+  let oldVal = ''; // 전역 변수
+  let newVal = '';
+  
+  
+  function ok(f){ 
+ 
+    if(oldVal == "" && newVal == "" ){ 
+      newVal = f.keyword.value; 
+      
+    } else if(f.keyword.value == "") {
+      return;                   // 중지
+    
+    } else {
+      oldVal = newVal;          // 현재 값을 다른 변수로 이동
+      newVal = f.keyword.value; // 새로운 값을 변수에 할당
+    
+    }        
+    
+    let divTag = document.getElementById('panel');
+    
+    // 출력할 문자열 조합
+    let str = 'oldVal: ' + oldVal + ' / newVal: ' + newVal;
+    
+    // DIV태그에 값을 할당하는 속성: innerHTML
+    divTag.innerHTML = divTag.innerHTML + '<br>' + str;
+  }
+</script>
+</head>
+<body>
+<form name='frm' action='' method='post'>
+  <input type='text' name='keyword' value='' style="width:90%" />
+    
+  <input type='button' name='btnOK' value='확인' onclick="ok(this.form);"></input>
+</form>
+ 
+<div id='panel' class="abc" style='font-size: 24px'></div>
+</body>
+</html>
