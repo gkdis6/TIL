@@ -1,4 +1,4 @@
-# spring framework
+# Spring framework
 
 - 스프링 수업 전 예습을 위한 공부를 정리하는 자료
 
@@ -79,12 +79,89 @@
 > 5. 설정 파일에서 스프링의 ProxyFactoryBean 클래스를 이용해 Target에 Advice를 설정
 > 6. getBean() 메서드로 빈 객체에 접근해 사용
 
-| 인터페이스           | 추상 메서드                                                  | 설명                           |
-| -------------------- | ------------------------------------------------------------ | ------------------------------ |
-| MethodBeforeAdvice   | Void before(Method method,<br />Object[] args,<br />Object target)<br />throws Throwable | 해당 메서드가 실행되기 전 실행 |
-| AfterReturningAdvice | Void afterReturning                                          |                                |
-| ThrowsAdvice         |                                                              |                                |
-| MethodInterceptor    |                                                              |                                |
+| 인터페이스           | 추상 메서드                                                  | 설명                                         |
+| -------------------- | ------------------------------------------------------------ | -------------------------------------------- |
+| MethodBeforeAdvice   | Void before(Method method,<br />Object[] args,<br />Object target)<br />throws Throwable | 해당 메서드가 실행되기 전 실행               |
+| AfterReturningAdvice | Void afterReturning(<br />Object returnValue,<br />Method method,<br />Object[] args,<br />Object target)<br />throws Throwable | 해당 메서드가 실행된 후 실행                 |
+| ThrowsAdvice         | Void afterThrowing(<br />Method method,<br />Object[] args,<br />Object target,<br />Exception ex) | 해당 메서드에서 예외 발생 시 실행            |
+| MethodInterceptor    | Object invoke(<br />MethodInvocation<br />invocation)<br />throws Throwable | 해당 메서드의 실행 전/후와 예외 발생 시 실행 |
 
 
+
+- @Aspect 애너테이션을 이용하는 방법
+
+---
+
+# Spring MVC
+
+## MVC 특징
+
+- 모델2 아키텍쳐를 지원
+- 스프링과 다른 모듈과의 연계가 쉽다
+- tiles나 sitemesh 같은 View 기술과의 연계가 쉽다
+- 태크 라이브러리를 통해 message 출력, theme 적용 그리고 입력 폼을 보다 쉽게 구현 가능
+
+----
+
+## MVC 구성 요소
+
+| 구성 요소         | 설명                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| DispatcherServlet | 클라이언트의 요청을 전달받아 해당 요청에 대한 컨트롤러를 선택하여 클라이언트의 요청을 전달. 또한 컨트롤러가 반환한 값을 View에 전달하여 알맞은 응답을 생성 |
+| HandlerMapping    | 클라이언트가 요청한 URL을 처리할 컨트롤러를 지정             |
+| Controller        | 클라이언트의 요청을 처리한 후 그 결과를 DispatcherServlet에 전달 |
+| ModelAndView      | 컨트롤러가 처리한 결과 및 뷰 선택에 필요한 정보를 저장       |
+| ViewResolver      | 컨트롤러의 처리 결과를 전달할 뷰를 지정                      |
+| View              | 컨트롤러의 처리 결과 화면을 생성                             |
+
+---
+
+## MVC 기능 수행 과정
+
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FQBJhP%2Fbtqw9NWXUND%2F6LqFMZKPhk2BQxcQ3yZGKK%2Fimg.png)
+
+1. 브라우저가 DispatcherServlet에 URL로 접근하여 해당 정보를 요청
+2. 핸들러 매핑에서 해당 요청에 대해 매핑된 컨트롤러가 있는지 요청
+3. 매핑된 컨트롤러에 대해 처리를 요청
+4. 컨트롤러가 클라이언트의 요청을 처리한 결과와 View 이름을 ModelAndView에 저장해서 DispatcherServlet으로 반환
+5. DispatcherServlet에서는 컨트롤러에서 보내온 View 이름을 ViewResolver로 보내 해당 View를 요청
+6. ViewResolver는 요청한 View를 보냄
+7. View의 처리 결과를 DispatcherServlet으로 보냄
+8. DispatcherServlet은 최종 결과를 브라우저로 전송
+
+----
+
+# 애너테이션
+
+| 브라우저 URL 요청 처리 애너테이션 관련 클래스 | 기능                                   |
+| --------------------------------------------- | -------------------------------------- |
+| DefaultAnnotationHandlerMapping               | 클래스 레벨에서 @RequestMapping을 처리 |
+| AnnotationMethodHandlerAdapter                | 메서드 레벨에서 @RequestMapping을 처리 |
+
+
+
+| 스테레오 타입 에너테이션 | 기능                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| @Controller              | 스프링 컨테이너가 component-scan에 의해 지정한 클래스를 컨트롤러 빈으로 자동 변환 |
+| @Service                 | 스프링 컨테이너가 component-scan에 의해 지정한 클래스를 서비스 빈으로 자동 변환 |
+| @Repository              | 스프링 컨테이너가 component-scan에 의해 지정한 클래스를 DAO빈으로 자동 변환 |
+| @Component               | 스프링 컨테이너가 component-scan에 의해 지정한 클래스를 빈으로 자동 변환 |
+
+
+
+@Autowired
+
+
+
+# Spring Boot
+
+Spring Boot는 Spring framework보다 의존성 관리가 용이할 뿐만 아니라 배포 또는 테스트 역시 Spring Framework보다 쉽게 빠르게 할 수 있다. Spring Boot로 개발하면 메이븐의 라이브러리 자동 업데이트 기능을 이어받을 수 있을 뿐만 아니라 기존 스프링 프레임워크의 복잡한 설정 과정을 최대한 줄일 수 있어 편리하다. 즉, 일반 응용 프로그램처럼 웹 애플리케이션을 개발할 수 있다. 현재는 STS4를 사용한다.
+
+## Spring Boot 특징
+
+- 일반적인 응용 프로그램을 단독으로 실행하는 수준으로 스프링 애플리케이션을 구현할 수 있다.
+- 프로젝트 환경을 구축할 때 필요한 톰캣, Jetty, UnderFlow 같은 서버 외적인 툴이 내장되어 있어 따로 설치할 필요가 없다.
+- XML 기반 설정이나 코드 없이 환경 설정을 자동화 할 수 있다.
+- 의존성 관리를 쉽게 자동으로 할 수 있다.
+- 화면 기능은 간결하게 구현하면서 스프링과 더 빠르고 쉽게 연동할 수 있는 기능을 제공하는 thymeleaf가 표준
 
