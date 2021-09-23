@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+
+        table,
+        tr,
+        td {
+            border: 1px solid black;
+        }
+
+        td {
+            width: 20px;
+        }
+    </style>
+    <script>
+        function makeTable() {
+            let text = "<table>";
+            let colnum = document.getElementById('col').value;
+            if(colnum< 3 || colnum > 10){
+                alert("열 값을 다시 입력해주세요");
+                return false;
+            }
+            let rownum = document.getElementById('row').value;
+            if(rownum< 3 || rownum > 10){
+                alert("행 값을 다시 입력해주세요");
+                return false;
+            }
+            for (let i = 0; i < colnum; i++) {
+                text += "<tr>";
+                for (let j = 0; j < rownum; j++) {
+                    text += "<td> </td>";
+                }
+                text += "</tr>";
+            }
+            text += "</table>";
+
+            document.getElementById('panel').innerHTML = text;
+            console.log(text);
+        }
+    </script>
+</HEAD>
+
+<BODY>
+    <FORM>
+        행의수: <Input type="text" name="row" id="row" value="5" size="20"><br>
+        열의수: <Input type="text" name="col" id="col" value="5" size="20"><br>
+        <button type="button" onclick="makeTable()">표 만들기</button>
+    </FORM>
+
+
+    <DIV id='panel'></DIV>
+
+</BODY>
+
+</HTML>

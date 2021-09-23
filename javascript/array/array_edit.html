@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+ 
+<p>The push method returns the new array length.</p>
+ 
+<button onclick="myFunction()">Try it</button>
+ 
+<p id="demo"></p>
+ 
+<script>
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = fruits;
+ 
+function myFunction() {
+    // console.log(fruits.push("Kiwi"));
+    // console.log(fruits.pop());
+    // console.log(fruits.unshift("Kiwi"));
+    // console.log(fruits.shift());
+    // console.log(fruits[fruits.length] = "Kiwi");
+    // fruits.splice(2, 0, "Lemon", "Kiwi");
+    console.log(fruits.slice(2));
+    document.getElementById("demo").innerHTML = fruits;
+}
+</script>
+ 
+</body>
+</html>

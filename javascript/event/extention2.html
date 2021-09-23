@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 페이지 로딩시 자동 실행 함수, 이름이 없는 무명 함수로 1회만 실행됨.
+        window.onload = function () {
+            var word1 = document.getElementById("word1");
+            var result1 = document.getElementById("result1");
+
+            word1.innerHTML = "test.jsp"; // SPAN 태그로 값을 할당
+            var str = word1.innerHTML; // SPAN 태그에서 값을 추출
+
+            if (str.lastIndexOf(".jsp") >= 0) {
+                result1.innerHTML = "전송할수 없는 형식입니다."; // SPAN 태그로 값을 할당
+            }
+
+        }
+    </script>
+</head>ƒ
+
+<body>
+    <H1>자바 스크립트 확장자 검사</H1><br><br>
+
+    <DIV id="panel">
+        <SPAN id="word1"></SPAN>: <SPAN id="result1"></SPAN><BR>
+    </DIV>
+
+</body>
+
+</html>

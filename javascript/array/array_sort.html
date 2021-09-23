@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+ 
+<p>The sort() method sorts an array alphabetically.</p>
+ 
+<button onclick="myFunction()">Try it</button>
+ 
+<p id="demo"></p>
+ 
+<script>
+var numbers = [1, 8, 5, 4];
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo").innerHTML = numbers;
+ 
+function myFunction() {//숫자인경우의 오름차순 sort
+    numbers.sort(function(a,b){return a-b});//내림차순 b-a
+    fruits.sort();
+    fruits.reverse();
+    document.getElementById("demo").innerHTML = numbers;
+}
+</script>
+ 
+</body>
+</html>

@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-<style type="text/css"> 
-*{ 
-  font-family: gulim; 
-  font-size: 22px; 
-} 
-</style>
- 
-<script>
-function sendit(){
-  str = document.getElementById("url").value; //여기서 url을 아이디로 찾음
-  alert(str);
-   
-  if(str == "" ) {
-    alert("주소를 입력해 주세요");
-    document.regiform.url.focus();  //여기서 url을 이름으로 찾음
-  }else{
-    location.href = str;    
-  }
-}
-</script>
- 
+    <meta charset="utf-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+
+    <script>
+        function sendit() {
+            str = document.getElementById("url").value; //여기서 url을 아이디로 찾음
+
+            if (str == "") {
+                alert("주소를 입력해 주세요");
+                document.regiform.url.focus(); //여기서 url을 이름으로 찾음
+            } else if(str.indexOf('http://')){
+                str = str.replace('http://','https://');
+                document.regiform.url.value = str;
+                location.href = str;
+            } else {
+                location.href = str;
+            }
+        }
+
+        function sendto(str) {
+            document.regiform.url.value = str;
+        }
+    </script>
+
 </head>
+
 <body>
-  <form name="regiform" method="post">
-    <INPUT type="text" id="url" name="url" size="50">
-    <!-- <A href="javascript: sendit();">주소 이동</a> -->
-    <button type="button" onclick="sendit()">주소이동</button>
-  </form> 
+    <form name="regiform" method="post">
+        <INPUT type="text" id="url" name="url" size="50">
+        <button type="button" onclick="sendit()">주소이동</button>
+        <button type="button" onclick="sendto('https://www.daum.net')">다음</button>
+        <button type="button" onclick="sendto('https://www.weather.go.kr/w/index.do')">기상청</button>
+        <button type="button" onclick="sendto('http://www.kyobobook.co.kr/index.laf?OV_REFFER=https://www.google.com/')">교보문고</button>
+    </form>
 </body>
+
 </html>

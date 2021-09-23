@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function checkInput(word) {
+            var ext = word.toLowerCase(); // 소문자로 변경 
+
+            if (ext.lastIndexOf(".exe") > 0) {
+                alert('파일의 확장자가 EXE 인것은 전송할 수 없습니다.');
+                return false; // 실행 취소
+            }
+
+            if (ext.lastIndexOf(".jsp") > 0) {
+                alert('파일의 확장자가 JSP 인것은 전송할 수 없습니다.');
+                return false; // 실행 취소
+            }
+
+            if (ext.lastIndexOf(".jpg") > 0) {
+                alert('파일의 확장자가 JPG 인 이미지임으로 전송 가능.');
+            }
+
+            alert('전송할 수 있는 파일 형식입니다.');
+        }
+    </script>
+</head>
+
+<body>
+    자바 스크립트 확장자 호출 테스트입니다.<br>
+
+    <script>
+        while (true) {
+            var filename = prompt('파일명을 입력하세요(종료는 999).', '');
+
+            if (filename == '999') {
+                break; // while 종료
+            }
+
+            checkInput(filename);
+
+        }
+
+        document.write('사용해 주셔서 감사합니다.');
+    </script>
+
+</body>
+
+</html>
