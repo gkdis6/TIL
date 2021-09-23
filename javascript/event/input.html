@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style>
+<Script type="text/javascript">
+ 
+  function check(f){
+    if (f.wname.value=="" || f.wname.value.length==0){
+      // window 객체 생략 가능
+      alert("이름을 입력해 주십시오.");
+      f.wname.focus();
+      return false;
+    }else if(f.subject.value.length==0){
+      alert("제목을 입력해 주십시오.");
+      f.subject.focus();
+      return false;
+    }else if (f.wcontent.value=="" || f.wcontent.value.length==0){
+      alert("내용을 입력해 주십시오.");
+      f.wcontent.focus();
+      return false;
+    }
+    else {
+      alert("데이터 정상 입력, 계속 진행합니다.");
+      // f.submit(); // button이 submit 기능이 없을 때 호출
+    }
+  }
+</Script>
+</head>
+ 
+<body>
+<form method='post' action='' name='myform' onsubmit="return check(this)">
+        <h2>방 명 록</h2>
+        이름 : <input name = "wname" type = "text"><br>
+        제목 : <input name = "subject" type = "text" size = "50"><br>
+        내용 : <textarea name = "wcontent" rows = "8" cols = "54"></textarea><br>
+        <!-- <button type = "button" onclick="check(this.form)">저장</button> --> //서브밋 해야함
+        <!-- <button type = "submit">저장</button> -->
+        <!-- <button type = "image" src = "disks.png"></button> //submit기능 가지고 있음 -->
+        <a href="javascript:check('myform')">
+            <img src = "disks.png" border='0'>
+        </a> //얘는 서브밋 해야함
+</form>
+</body>
+</html>
+ 

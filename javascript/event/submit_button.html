@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <Script type="text/javascript">
+        // 폼의 input태그가 입력을 받았는지 검사
+        function check(f) {
+            // f = document.myform
+            if (f.wname.value == "" || f.wname.value.length == 0) {
+                window.alert("이름을 입력해 주십시오.");
+                f.wname.focus();
+                return false;
+            } else if (f.subject.value.length == 0) {
+                window.alert("제목을 입력해 주십시오.");
+                f.subject.focus();
+                return false;
+            } else if (f.wcontent.value == "" || f.wcontent.value.length == 0) {
+                alert("내용을 입력해 주십시오.");
+                f.wcontent.focus();
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </Script>
+</head>
+
+<body>
+    <!-- this는 자바스크립트 함수가 위치한 태그로 여기서는 this는 form 태그임,
+       return true: submit 진행, return false: submit 진행 안함, 
+   -->
+
+    <form method='post' action='write_f.jsp' name='myform' onsubmit="return check(this);">
+        <table width="63%" border="0" align="center">
+            <tr>
+                <td height="22" colspan="2">방 명 록</td>
+            </tr>
+            <tr>
+                <td width="15%" height="23">이름</td>
+                <td width="85%"><input type="text" name="wname"></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="subject" size=50></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea name="wcontent" cols=54 rows=8></textarea></td>
+            </tr>
+            <tr align="center" valign="middle">
+                <td colspan="2">
+                    <!-- submit 버튼은 onclick 이벤트를 가지고 있어서 별다른 선언이 필요 없음 --> <input type="submit" value="저장"> <input
+                        type="reset" value="다시쓰기">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
