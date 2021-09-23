@@ -19,15 +19,18 @@
     <p id="demo"></p>
 
     <script>
-        let person = {
+        var person = {
             firstName: "John",
             lastName: "Doe",
             id: 5566,
             fullName: function () {
                 return `${this.firstName} ${this.lastName}`;
+            },
+            eat: function(food){
+                alert(this.fullName() + "이 "+food+"을(를) 먹습니다.");
             }
         };
-
+        person.eat("옥수수");
         document.getElementById("demo").innerHTML = person.fullName();
     </script>
 
