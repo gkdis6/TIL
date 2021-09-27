@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <script type="text/javascript">
+        function show() {
+            // DIV 태그 검색
+            let parentdiv = document.getElementById("textHolder");
+            // 새로운 DIV 태그 생성
+            let divel = document.createElement("div");
+            // 새로운 DIV태그에 텍스트 생성
+            divel.appendChild(document.createTextNode("CBD Developer 8"));
+            // 새로운 DIV 태그를 부모 DIV 태그인 'textHolder'에 추가
+            parentdiv.appendChild(divel);
+
+        }
+        function del(){
+            let parentdiv = document.getElementById("textHolder");
+            let divel = parentdiv.firstChild;
+            if(divel != undefined){
+                parentdiv.removeChild(divel);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="show()">텍스트 추가</button>
+    <button onclick="del()">텍스트 삭제</button>
+    <div id="textHolder"></div>
+</body>
+
+</html>
