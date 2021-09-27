@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        // 페이지가 로딩되면 자동 실행
+        window.onload = function () {
+            var count = 0;
+
+            var divel = document.getElementById('divHolder');
+
+            // 자식 노드 수 만큼 순환
+            for (i = 0; i < divel.childNodes.length; i++) {
+                if (divel.childNodes[i].nodeType == 1) { // 태그인지 검사
+                    count++; // 태그의 갯수 증가
+                }
+            }
+
+            alert("자식 엘레멘트(태그) 노드의 갯수는 " + count);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="divHolder">
+        <!-- Ajax 정복 루트 -->
+        <div>HTML</div>
+        <div>JavaScript</div>
+        <div>DOM</div>
+        <div>Ajax</div>
+    </div>
+</body>
+
+</html>
