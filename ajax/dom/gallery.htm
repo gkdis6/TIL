@@ -6,6 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        window.onload = function () {
+            var img1 = document.createElement("img");
+            img1.src = "./images/showImg/01.jpg";
+            img1.width = 80;
+            img1.height = 80;
+            var show1Div = document.getElementById("show1");
+            show1Div.appendChild(img1);
+
+            var img2 = document.createElement("img");
+            img2.src = "./images/showImg/02.jpg";
+            img2.width = 80;
+            img2.height = 80;
+            var show2Div = document.getElementById("show2");
+            show2Div.appendChild(img2);
+
+            var img3 = document.createElement("img");
+            img3.src = "./images/showImg/03.jpg";
+            img3.width = 80;
+            img3.height = 80;
+            var show3Div = document.getElementById("show3");
+            show3Div.appendChild(img3);
+
+            var img4 = document.createElement("img");
+            img4.src = "./images/showImg/04.jpg";
+            img4.width = 80;
+            img4.height = 80;
+            var show4Div = document.getElementById("show4");
+            show4Div.appendChild(img4);
+
+            var img5 = document.createElement("img");
+            img5.src = "./images/showImg/05.jpg";
+            img5.width = 80;
+            img5.height = 80;
+            var show5Div = document.getElementById("show5");
+            show5Div.appendChild(img5);
+        }
+
+        function show(div){
+            //alert(div);
+            let temp = div.firstChild;
+            //alert(temp);
+            let mainImg = document.createElement("img");
+            mainImg.src = temp.src;
+            mainImg.width = 570;
+            mainImg.height = 400;
+            let showMain = document.getElementById("showMain");
+            showMain.innerHTML = ""; //기존 내용 지우기
+            showMain.appendChild(mainImg);
+        }
+    </script>
 </head>
 
 <body>
