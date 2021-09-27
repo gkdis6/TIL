@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script>
+        function btnAdd() {
+            let parentdiv = document.getElementById("textHolder");
+            let filein = document.createElement("div");
+            filein.type = "file";
+            //filein.appendChild(document.createTextNode(`파일 선택 ${parentdiv.childNodes.length-1}:`));
+            filein.innerHTML = `파일 선택 ${parentdiv.childNodes.length-1}: <input type='file' name='file'/>`;
+            parentdiv.appendChild(filein);
+        }
+
+        function btnDel() {
+            let parentdiv = document.getElementById("textHolder");
+            let divel = parentdiv.lastChild;
+            console.log(parentdiv.childNodes.length);
+            if ((parentdiv.childNodes.length) > 3) {
+                parentdiv.removeChild(divel);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="btnAdd()">파일 선택 추가</button>
+    <button onclick="btnDel()">파일 선택 제거</button>
+
+    <br />
+    <DIV id="textHolder">
+        <div>
+            파일 선택 1: <input type="file" name="file" />
+        </div>
+    </DIV>
+</body>
+
+</html>
