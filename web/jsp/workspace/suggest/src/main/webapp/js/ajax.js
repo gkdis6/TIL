@@ -31,7 +31,7 @@ class UserStorage {
      		this.xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             this.xhr.send(params);
         }else{
-        	hide('suggest');
+        	hide('suggest'); //가기 전
         }
       });
     }      
