@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>자손 셀렉터</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript">
+        // $(function () {
+        //     $(".first strong").css("color", "red");
+        // });
+
+        // $(function(){
+        //     $("li *").css("color", "red");
+        // })
+
+        $(function(){
+            $(".first, .third").css("color", "red");
+        });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li class="first"><strong> 텍스트 </strong> 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="second"><strong> 텍스트 </strong> 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="third"><strong> 텍스트 </strong> 텍스트 텍스트 텍스트 텍스트 </li>
+        <li class="fourth"><strong> 텍스트 </strong> 텍스트 텍스트 텍스트 텍스트 </li>
+    </ul>
+
+</body>
+
+</html>

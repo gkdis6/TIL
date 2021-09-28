@@ -1,0 +1,28 @@
+<!-- (2) 다음 인접 selector 
+  - $("이전+다음")  : 이전의 인접한 다음 태그 선택 -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>인접 셀렉터</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#second + li").css("color", "red");
+        });
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li id="first"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="second"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="third"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+        <li id="fourth"> 텍스트 텍스트 텍스트 텍스트 텍스트 </li>
+
+    </ul>
+</body>
+
+</html>
