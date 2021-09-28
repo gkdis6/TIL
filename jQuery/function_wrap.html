@@ -1,0 +1,45 @@
+<!-- - .wrap('<div></div>')  ;  각 요소를 <div></div> 태그로 각각 감싼다.
+ - .wrapAl('<div></div>')    ;  요소 전체를  <div></div> 태그로 한번에 감싼다.
+ - .wrapInner(.'<b></b>')  ; 자식 요소 각각을 <b></b> 태그로 각각 감싼다. -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>wrap demo</title>
+    <style>
+        div {
+            border: 2px solid blue;
+        }
+
+        p {
+            background: yellow;
+            margin: 4px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+
+<body>
+
+    <p>Hello</p>
+    <p>cruel</p>
+    <p>World</p>
+    <hr>
+    <p>Hello</p>
+    <p>cruel</p>
+    <p>World</p>
+    <hr>
+    <p>Hello</p>
+    <p>cruel</p>
+    <p>World</p>
+    <script>
+        $("p").slice(0, 3).wrap("<div></div>");
+        $("p").slice(3, 6).wrapAll("<div></div>");
+        $("p").slice(6, 10).wrapInner("<b></b>");
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!-- - $( "p" ).first().insertBefore( "#foo" ); p가 #foo요소 앞에 이동
+- $( "p" ).last().insertAfter( "#foo2" ); p가 #foo2요소 뒤로 이동 -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>insertBefore demo</title>
+    <style>
+        #foo,
+        #foo2 {
+            background: yellow;
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+
+<body>
+
+    <div id="foo">FOO!</div>
+    <div id="foo2">FOO!~~</div>
+    <p>I have something to say... </p>
+    <p>I have not something to say... </p>
+
+    <script>
+        $("p").first().insertBefore("#foo");
+        $("p").last().insertAfter("#foo2");
+    </script>
+
+</body>
+
+</html>

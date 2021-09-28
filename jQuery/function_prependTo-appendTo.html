@@ -1,0 +1,35 @@
+<!-- HTML 이동
+ - prependTo()/appendTo(...) 
+ -  $( "span" ).prependTo( "#foo" );
+   : 'span' 를  #foo요소 안의 앞으로 이동
+ - $( "span" ).appendTo( "#foo2" );
+   : 'span' 를  #foo2요소 안의 뒤로 이동 -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>prependTo demo</title>
+    <style>
+        div {
+            background: yellow;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+
+<body>
+
+    <div id="foo">FOO!</div>
+    <div id="foo2">FOO!</div>
+    <span>I have something to say... </span>
+    <span>I have not something to say... </span>
+    <script>
+        $("span").first().prependTo("#foo");
+        $("span").eq(1).appendTo("#foo2");
+    </script>
+
+</body>
+
+</html>
