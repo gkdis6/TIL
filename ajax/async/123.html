@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Promise.resolve()
+            .then(() => {
+                // .then()에서 거부한 프로미스를 반환함
+                throw new Error('으악!');
+            })
+            .then(() => {
+                console.log('실행되지 않는 코드');
+            }, error => {
+                console.error('onRejected 함수가 실행됨: ' + error.message);
+            });
+    </script>
+</body>
+
+</html>
