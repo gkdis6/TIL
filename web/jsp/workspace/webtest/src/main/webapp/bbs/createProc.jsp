@@ -4,7 +4,8 @@
  %>
  <jsp:useBean class="bbs.BbsDAO" id="dao"/>
  <jsp:useBean class="bbs.BbsDTO" id="dto"/>
- <jsp:setProperty name="dto" property="wname" <%-- 이름이 다를 경우 param=""사용 --%>/>
+ <jsp:setProperty name="dto" property="*" />
+ <%-- 이름이 다를 경우 param=""사용 --%>
  <!-- <% String wname = request.getParameter("wname");
  		dto.setWname(wname);%> -->
 <%

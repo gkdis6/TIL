@@ -2,6 +2,7 @@ package bbs;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import utility.DBClose;
@@ -35,4 +36,99 @@ public class BbsDAO {
 		return flag;
 	}
 	
+	public BbsDTO read(int bbsno) {
+		BbsDTO dto = null;
+		Connection con = Open.getConnection();
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+		ResultSet rs = null;
+		sql.append(" select bbsno, wname, title, viewcnt, content, ");
+		sql.append("to_char(wdate,'yyyy-mm-dd') wdate ");
+		sql.append(" from bbs where bbsno = ?");
+		
+		try {
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, bbsno);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				dto = new BbsDTO();
+				dto.setBbsno(rs.getInt("bbsno"));
+				dto.setWname(rs.getString("wname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setViewcnt(rs.getInt("viewcnt"));
+				dto.setContent(rs.getString("content"));
+				dto.setWdate(rs.getString("wdate"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(con, pstmt, rs);
+		}
+		return dto;
+	}
+	
+	public boolean update(BbsDTO dto) {
+		boolean flag = false;
+		Connection con = Open.getConnection();
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("update bbs set title = ?, content = ? ");
+		sql.append("where bbsno = ? ");
+		try {
+			prst = con.prepareStatement(sql.toString());
+			prst.setString(1, dto.getTitle());
+			prst.setString(2, dto.getContent());
+			prst.setInt(3, dto.getBbsno());
+			
+			int cnt = prst.executeUpdate();
+			if(cnt>0) flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(prst, con);
+		}
+		return flag;
+	}
+	
+	public boolean delete(int bbsno) {
+		boolean flag = false;
+		Connection con = Open.getConnection();
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("delete from bbs ");
+		sql.append("where bbsno = ? ");
+		try {
+			prst = con.prepareStatement(sql.toString());
+			prst.setInt(1, bbsno);
+			
+			int cnt = prst.executeUpdate();
+			if(cnt>0) flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(prst, con);
+		}
+		return flag;
+	}
+	
+	public void upViewcnt(int bbsno) {
+		Connection con = Open.getConnection();
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE BBS ");
+		sql.append("SET VIEWCNT = VIEWCNT +1" );
+		sql.append("WHERE BBSNO =1 ");
+		try {
+			prst = con.prepareStatement(sql.toString());
+			prst.setInt(1, bbsno);
+			prst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(prst, con);
+		}
+	}
 }
