@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 
 import utility.DBClose;
 import utility.Open;
@@ -118,9 +119,9 @@ public class BbsDAO {
 		Connection con = Open.getConnection();
 		PreparedStatement prst = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("UPDATE BBS ");
-		sql.append("SET VIEWCNT = VIEWCNT +1" );
-		sql.append("WHERE BBSNO =1 ");
+		sql.append(" UPDATE BBS ");
+		sql.append(" SET VIEWCNT = VIEWCNT +1 " );
+		sql.append(" WHERE BBSNO =? ");
 		try {
 			prst = con.prepareStatement(sql.toString());
 			prst.setInt(1, bbsno);
@@ -130,5 +131,39 @@ public class BbsDAO {
 		}finally {
 			DBClose.close(prst, con);
 		}
+	}
+	
+	public boolean passCheck(Map map) {
+		boolean flag = false;
+		Connection con = Open.getConnection();
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		ResultSet rs = null;
+		
+		sql.append(" select count(bbsno) as cnt ");
+		sql.append(" from bbs where bbsno = ? ");
+		sql.append(" and passwd = ? ");
+		
+		int bbsno = (Integer)map.get("bbsno");
+		String passwd = (String)map.get("passwd");
+		
+		try {
+			prst = con.prepareStatement(sql.toString());
+			prst.setInt(1, bbsno);
+			prst.setString(2, passwd);
+			
+			rs = prst.executeQuery();
+			
+			rs.next();
+			int cnt = rs.getInt("cnt");
+			if(cnt>0) flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(con, prst, rs);
+		}
+		
+		return flag;
 	}
 }

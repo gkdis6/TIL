@@ -22,6 +22,12 @@
   		
   		location.href=url;
   	}
+	function del(){
+		let url = "deleteForm.jsp";
+		url += "?bbsno=<%=dto.getBbsno()%>";
+		
+		location.href=url;
+	}
   </script>
 </head>
 <body> 
@@ -47,8 +53,8 @@
 </div>
 	
 	<button class = "btn" onclick="location.href='./createForm.jsp'">등록</button>
-	<button class = "btn">수정</button>
-	<button class = "btn">삭제</button>
+	<button class = "btn" onclick="update()">수정</button>
+	<button class = "btn" onclick="del()">삭제</button>
 	<button class = "btn" onclick="location.href='./list.jsp'">목록</button>
 </div>
 </body> 
