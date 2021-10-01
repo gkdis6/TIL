@@ -26,6 +26,16 @@
 <head>
   <title>게시글 삭제</title>
   <meta charset="utf-8">
+  <script>
+  function list(){
+	  let url = "list.jsp";
+		url += "?col=<%=request.getParameter("col") %>";
+		url += "&word=<%=request.getParameter("word") %>";
+		url += "&nowPage=<%=request.getParameter("nowPage") %>";
+				
+		location.href=url;
+  }
+  </script>
 </head>
 <body> 
 <jsp:include page="/menu/top.jsp"/>
@@ -45,7 +55,7 @@
 <% if(!pflag){ %>
 	<button class="btn" onclick="history.back()">다시 시도</button>
 	<% } %>
-	<button class="btn" onclick="location.href='list.jsp'">목록</button>
+	<button class="btn" onclick="list()">목록</button>
 </div>
 </body> 
 </html> 

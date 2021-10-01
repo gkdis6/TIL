@@ -255,43 +255,6 @@ public class BbsDAO {
 		return flag;
 	}
 	
-	public List<BbsDTO> list(){
-		List<BbsDTO> list = new ArrayList<BbsDTO>();
-		Connection con = Open.getConnection();
-		PreparedStatement prst = null;
-		StringBuffer sql = new StringBuffer();
-		ResultSet rs = null;
-		sql.append("select bbsno, wname, title, grpno, indent, ansnum ");
-		sql.append("from bbs ");
-		sql.append("order by bbsno desc ");
-		
-		try {
-			prst = con.prepareStatement(sql.toString());
-			rs = prst.executeQuery();
-			
-			while(rs.next()) {
-				BbsDTO dto = new BbsDTO();
-				dto.setBbsno(rs.getInt("bbsno"));
-				dto.setWname(rs.getString("wname"));
-				dto.setTitle(rs.getString("title"));
-				dto.setGrpno(rs.getInt("grpno"));
-				dto.setIndent(rs.getInt("indent"));
-				dto.setAnsnum(rs.getInt("ansnum"));
-				
-				list.add(dto);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBClose.close(con, prst, rs);
-		}
-		
-		
-		return list;
-	}
-	
 	public List<BbsDTO> list(Map map){
 		List<BbsDTO> list = new ArrayList<BbsDTO>();
 		Connection con = Open.getConnection();
@@ -304,7 +267,7 @@ public class BbsDAO {
 		int sno = (Integer)map.get("sno");
 		int eno = (Integer)map.get("eno");
 		
-		sql.append(" SELECT bbsno, wname, title, viewcnt, wdate, grpno, indent, ansnum, r ");
+		sql.append(" SELECT bbsno, wname, title, viewcnt, to_char(wdate,'yyyy-mm-dd') as wdate, grpno, indent, ansnum, r ");
 		sql.append(" from( ");
 		sql.append(" 	SELECT bbsno, wname, title, viewcnt, wdate, grpno, indent, ansnum, rownum r ");
 		sql.append(" 	from( ");

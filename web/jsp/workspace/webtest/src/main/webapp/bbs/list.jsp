@@ -41,6 +41,9 @@
   function read(bbsno){
 	  let url = "read.jsp";
 	  url += "?bbsno="+bbsno;
+	  url += "&col=<%=col%>";
+	  url += "&word=<%=word%>";
+	  url += "&nowPage=<%=nowPage%>";
 	  
 	  location.href = url
   }
@@ -107,6 +110,9 @@
 						}
 					%>
 					<a href="javascript:read('<%=dto.getBbsno()%>')"><%=dto.getTitle() %></a>
+					<%if(Utility.compareDay(dto.getWdate())){ %>
+						<img src="../images/new.gif">	
+					<%}%>
 					</td>
 					<td><%=dto.getWname() %></td>
 					<td><%=dto.getGrpno() %></td>

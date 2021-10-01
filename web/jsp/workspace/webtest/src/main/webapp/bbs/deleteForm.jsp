@@ -5,6 +5,10 @@
  	int bbsno = Integer.parseInt(request.getParameter("bbsno"));
  	
  	BbsDTO dto = dao.read(bbsno);
+ 	
+ 	String nowPage = request.getParameter("nowPage");
+ 	String col = request.getParameter("col");
+ 	String word = request.getParameter("word");
  %>
 <!DOCTYPE html> 
 <html> 
@@ -26,7 +30,10 @@
       method="post"
       >
  
-  <input type="hidden" name="bbsno" value="<%= request.getParameter("bbsno") %>">
+  <input type="hidden" name="bbsno" value="<%= dto.getBbsno() %>">
+  <input type="hidden" name="nowPage" value="<%= request.getParameter("nowPage") %>">
+  <input type="hidden" name="col" value="<%= request.getParameter("col") %>">
+  <input type="hidden" name="word" value="<%= request.getParameter("word") %>">
   <div class="form-group">
   	<label class = "control-label col-sm-2" for="passwd">비밀번호</label>
   	<div class="col-sm-6">

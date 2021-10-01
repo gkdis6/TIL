@@ -9,6 +9,7 @@
  	BbsDTO dto = dao.read(bbsno);
  	
  	String content = dto.getContent().replaceAll("\r\n", "<br>");
+
  %>
 <!DOCTYPE html> 
 <html> 
@@ -19,12 +20,18 @@
   	function update(){
   		let url = "updateForm.jsp";
   		url += "?bbsno=<%=dto.getBbsno()%>";
+  		url += "&col=<%=request.getParameter("col") %>";
+		url += "&word=<%=request.getParameter("word") %>";
+		url += "&nowPage=<%=request.getParameter("nowPage") %>";
   		
   		location.href=url;
   	}
 	function del(){
 		let url = "deleteForm.jsp";
 		url += "?bbsno=<%=dto.getBbsno()%>";
+		url += "&col=<%=request.getParameter("col") %>";
+		url += "&word=<%=request.getParameter("word") %>";
+		url += "&nowPage=<%=request.getParameter("nowPage") %>";
 		
 		location.href=url;
 	}
@@ -34,6 +41,14 @@
 		
 		location.href=url;
 	}
+	function list(){
+		  let url = "list.jsp";
+			url += "?col=<%=request.getParameter("col") %>";
+			url += "&word=<%=request.getParameter("word") %>";
+			url += "&nowPage=<%=request.getParameter("nowPage") %>";
+					
+			location.href=url;
+	  }
   </script>
 </head>
 <body> 
@@ -62,7 +77,7 @@
 	<button class = "btn" onclick="update()">수정</button>
 	<button class = "btn" onclick="del()">삭제</button>
 	<button class = "btn" onclick="reply()">답변</button>
-	<button class = "btn" onclick="location.href='./list.jsp'">목록</button>
+	<button class = "btn" onclick="list()">목록</button>
 </div>
 </body> 
 </html> 
