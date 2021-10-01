@@ -28,6 +28,12 @@
 		
 		location.href=url;
 	}
+	function reply(){
+		let url = "replyForm.jsp";
+		url += "?bbsno=<%=dto.getBbsno()%>";
+		
+		location.href=url;
+	}
   </script>
 </head>
 <body> 
@@ -55,6 +61,7 @@
 	<button class = "btn" onclick="location.href='./createForm.jsp'">등록</button>
 	<button class = "btn" onclick="update()">수정</button>
 	<button class = "btn" onclick="del()">삭제</button>
+	<button class = "btn" onclick="reply()">답변</button>
 	<button class = "btn" onclick="location.href='./list.jsp'">목록</button>
 </div>
 </body> 
