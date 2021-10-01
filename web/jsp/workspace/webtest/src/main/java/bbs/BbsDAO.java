@@ -166,4 +166,99 @@ public class BbsDAO {
 		
 		return flag;
 	}
+	
+	public List<BbsDTO> list(){
+		List<BbsDTO> list = new ArrayList<BbsDTO>();
+		Connection con = Open.getConnection();
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		ResultSet rs = null;
+		sql.append("select bbsno, wname, title, grpno, indent, ansnum ");
+		sql.append("from bbs ");
+		sql.append("order by bbsno desc ");
+		
+		try {
+			prst = con.prepareStatement(sql.toString());
+			rs = prst.executeQuery();
+			
+			while(rs.next()) {
+				BbsDTO dto = new BbsDTO();
+				dto.setBbsno(rs.getInt("bbsno"));
+				dto.setWname(rs.getString("wname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setGrpno(rs.getInt("grpno"));
+				dto.setIndent(rs.getInt("indent"));
+				dto.setAnsnum(rs.getInt("ansnum"));
+				
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(con, prst, rs);
+		}
+		
+		
+		return list;
+	}
+	
+	public List<BbsDTO> list(Map map){
+		List<BbsDTO> list = new ArrayList<BbsDTO>();
+		Connection con = Open.getConnection();
+		PreparedStatement prst = null;
+		StringBuffer sql = new StringBuffer();
+		ResultSet rs = null;
+		
+		String col = (String)map.get("col"); //name, title, content, title_content 
+		String word = (String)map.get("word");
+		
+		sql.append("select bbsno, wname, title, grpno, indent, ansnum ");
+		sql.append("from bbs ");
+		
+		if(word.trim().length() > 0 && col.equals("title_content")) {
+			sql.append("where title like '%'||?||'&' ");
+			sql.append("or content like '%'||?||'%' ");
+		} else if (word.trim().length() > 0) {
+			sql.append(" where "+col+" like '%'||?||'%' ");
+		}
+		
+		sql.append("order by bbsno desc ");
+		
+		
+		
+		try {
+			prst = con.prepareStatement(sql.toString());
+			rs = prst.executeQuery();
+			
+			if(word.trim().length() > 0 && col.equals("title_content")) {
+				prst.setString(1, word);
+				prst.setString(2, word);
+			} else if (word.trim().length() > 0) {
+				prst.setString(1, word);
+			}
+			
+			while(rs.next()) {
+				BbsDTO dto = new BbsDTO();
+				dto.setBbsno(rs.getInt("bbsno"));
+				dto.setWname(rs.getString("wname"));
+				dto.setTitle(rs.getString("title"));
+				dto.setGrpno(rs.getInt("grpno"));
+				dto.setIndent(rs.getInt("indent"));
+				dto.setAnsnum(rs.getInt("ansnum"));
+				
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(con, prst, rs);
+		}
+		
+		
+		return list;
+	}
 }
