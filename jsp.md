@@ -24,3 +24,50 @@
 
 
 
+## useBean 사용
+
+```jsp
+<%@ page import="model.Product" %>
+<%
+	request.setCharacterEncoding("utf-8");
+	String bit = request.getParameter("bit");
+	String brand = request.getParameter("brand");
+	String core = request.getParameter("core");
+	String etc = request.getParameter("etc");
+	String filepath = request.getParameter("filepath");
+
+	Prodect prod = new Product();
+	prod.setBit(bit);
+	prod.setBrand(brand);
+	prod.setCore(core);
+	prod.setEtc(etc);
+	prod.setFilePath(filepath);
+%>
+```
+
+위의 코드를 useBean으로 하면 훨씬 간결한 코드를 얻을 수 있음. 위 아래 코드는 같은 기능을 가짐.
+
+```jsp
+<jsp:useBean class="model.Product" id="cpu" scope="request"/>
+<jsp:setProperty name="cpu" property="*" />
+```
+
+----
+
+```jsp
+<%@ page import="model.Product" %>
+<% Prodect prod = (Product) session.getAttribute("product");%>
+Bit:<%=product.getBit() %>
+Brand:<%=product.getBrand() %>
+Core:<%=product.getCore() %>
+```
+
+useBean 사용 코드
+
+```jsp
+<jsp:useBean id="product" class="model.Product" scope="request"/>
+Bit:<jsp:getProperty name="product" property="bit"/>
+Brand:<jsp:getProperty name="product" property="brand"/>
+Core:<jsp:getProperty name="product" property="core"/>
+```
+
