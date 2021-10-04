@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="java.util.*, bbs.*, utility.*" %> 
-<jsp:useBean class="bbs.BbsDAO" id="dao"/>
+<%@ page contentType="text/html; charset=UTF-8" %> 
+<%@ page import="java.util.*, memo.*, utility.*" %> 
+<jsp:useBean class="memo.MemoDAO" id="dao"/>
  <%
  	//검색 관련
  	String col = Utility.checkNull(request.getParameter("col"));
@@ -16,7 +16,7 @@
  		nowPage = Integer.parseInt(request.getParameter("nowPage"));
  	}
  	
- 	int recordPerPage = 3;
+ 	int recordPerPage = 5;
  	
  	int sno = ((nowPage-1) * recordPerPage) + 1;
  	int eno = nowPage * recordPerPage;
@@ -26,22 +26,23 @@
  	map.put("word", word);
  	map.put("sno",sno);
  	map.put("eno",eno);
- 	List<BbsDTO> list = dao.list(map);
+ 	List<MemoDTO> list = dao.list(map);
  	
  	int total = dao.total(col, word);
  	
  	String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
  	
  %>
+ 
 <!DOCTYPE html> 
 <html> 
 <head>
   <title>homepage</title>
   <meta charset="utf-8">
   <script>
-  function read(bbsno){
-	  let url = "read.jsp";
-	  url += "?bbsno="+bbsno;
+  function update(memono){
+	  let url = "updateForm.jsp";
+	  url += "?memono="+memono;
 	  url += "&col=<%=col%>";
 	  url += "&word=<%=word%>";
 	  url += "&nowPage=<%=nowPage%>";
@@ -53,8 +54,8 @@
 <body> 
 <jsp:include page="/menu/top.jsp"/>
 <div class="container">
-<h1>게시판 목록</h1>
-<form action='list.jsp' class='form-inline' >
+<h1>목록</h1>
+ <form action='list.jsp' class='form-inline' >
 	<div class="form-group">
 		<select class="form-control" name="col">
 			<option value="wname"
@@ -85,10 +86,7 @@
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th>작성자</th>
-			<th>grpno</th>
-			<th>indent</th>
-			<th>ansnum</th>
+			<th>작성일자</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -97,28 +95,16 @@
 		<%
 		} else {
 			for(int i = 0; i < list.size(); i++){ 
-				BbsDTO dto = list.get(i);
+				MemoDTO dto = list.get(i);
 		%>
 				<tr>
-					<td><%=dto.getBbsno() %></td>
-					<td>
-					<%
-						for(int r = 0; r < dto.getIndent(); r++){
-							out.print("&nbsp;&nbsp;");
-						}
-						if(dto.getIndent() > 0){
-							out.print("<img src='../images/re.jpg'>");
-						}
-					%>
-					<a href="javascript:read('<%=dto.getBbsno()%>')"><%=dto.getTitle() %></a>
+					<td><%=dto.getMemono() %></td>
+					<td><a href="javascript:update('<%=dto.getMemono()%>')"><%=dto.getTitle() %></a></td>
+					<td><%=dto.getWdate() %>
 					<%if(Utility.compareDay(dto.getWdate())){ %>
 						<img src="../images/new.gif">	
 					<%}%>
 					</td>
-					<td><%=dto.getWname() %></td>
-					<td><%=dto.getGrpno() %></td>
-					<td><%=dto.getIndent() %></td>
-					<td><%=dto.getAnsnum() %></td>
 				</tr>
 		<%}
 		} %>

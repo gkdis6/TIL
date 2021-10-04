@@ -32,8 +32,8 @@
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">메모<span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="<%=root%>/bbs/createForm.jsp">생성</a></li>
-        <li><a href="<%=root%>/bbs/list.jsp">목록</a></li>                       
+        <li><a href="<%=root%>/memo/createForm.jsp">생성</a></li>
+        <li><a href="<%=root%>/memo/list.jsp">목록</a></li>                       
       </ul>
     </li>
     <li class="dropdown">

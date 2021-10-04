@@ -2,9 +2,9 @@
 <%@ page import="bbs.BbsDTO" %>
  <jsp:useBean class="bbs.BbsDAO" id="dao"/>
  <%
- 	int bbsno = Integer.parseInt(request.getParameter("bbsno"));
+ 	int memono = Integer.parseInt(request.getParameter("memono"));
  	
- 	BbsDTO dto = dao.read(bbsno);
+ 	BbsDTO dto = dao.read(memono);
  	
  	String nowPage = request.getParameter("nowPage");
  	String col = request.getParameter("col");
