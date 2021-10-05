@@ -1,41 +1,61 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
- 
+ <%@ page import="java.util.*" %>
+ <%
+ 	request.setCharacterEncoding("utf-8");
+ %>
+ <jsp:useBean class="memo.MemoDAO" id="dao"/>
+ <jsp:useBean class="memo.MemoDTO" id="dto"/>
+ <jsp:setProperty name="dto" property="*" />
+<%
+	Map map = new HashMap();
+	map.put("memono", dto.getMemono());
+	map.put("passwd", dto.getPasswd());
+	
+	int memono = dto.getMemono();
+	
+	boolean pflag = dao.passCheck(map);
+	
+	boolean flag = false;
+	
+	if(pflag){
+		flag = dao.delete(memono);
+	}
+%>	
 <!DOCTYPE html> 
 <html> 
 <head>
-  <title>homepage</title>
+ <title>게시글 삭제</title>
   <meta charset="utf-8">
+  <script>
+  function list(){
+	  let url = "list.jsp";
+		url += "?col=<%=request.getParameter("col") %>";
+		url += "&word=<%=request.getParameter("word") %>";
+		url += "&nowPage=<%=request.getParameter("nowPage") %>";
+				
+		location.href=url;
+  }
+  </script>
 </head>
 <body> 
 <jsp:include page="/menu/top.jsp"/>
 <div class="container">
-<h1 class="col-sm-offset-2 col-sm-10">제목</h1>
-<form class="form-horizontal" 
-      action="Proc.jsp"
-      method="post"
-      >
- 
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="title">제목</label>
-    <div class="col-sm-6">
-      <input type="text" name="title" id="title" class="form-control">
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="content">내용</label>
-    <div class="col-sm-6">
-    <textarea rows="5" cols="5" id="content" name="content" class="form-control"></textarea>
-    </div>
-  </div>
-  
-   <div class="form-group">
-   <div class="col-sm-offset-2 col-sm-5">
-    <button class="btn">등록</button>
-    <button type="reset" class="btn">취소</button>
-   </div>
- </div>
-</form>
+<div class="well well-lg">
+	<%
+		if(!pflag){
+			out.print("잘못된 비밀번호입니다.");
+		}else if(flag){
+			out.print("메모 삭제 성공입니다.");
+		}else{
+			out.print("메모 삭제 실패입니다.");
+		}
+	%>
+	
+</div>
+<% if(!pflag){ %>
+	<button class="btn" onclick="history.back()">다시 시도</button>
+	<% } %>
+	<button class="btn" onclick="list()">목록</button>
 </div>
 </body> 
 </html> 

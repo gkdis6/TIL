@@ -70,9 +70,9 @@
   
    <div class="form-group">
    <div class="col-sm-offset-2 col-sm-5">
-    <button class="btn">수정</button>
-	<button class = "btn" onclick="del()">삭제</button>
-	<button type="button" class = "btn" onclick="list()">취소</button>
+    <button class ="btn">수정</button>
+	<button type = "button" class ="btn" onclick="del()">삭제</button>
+	<button type ="button" class = "btn" onclick="list()">취소</button>
    </div>
  </div>
 </form>
