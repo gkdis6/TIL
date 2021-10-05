@@ -5,16 +5,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CommandService;
 
-public class DateAction implements Action {
+public class MyinfoAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		CommandService service = new CommandService();
-		String str = service.getDate();
+		StringBuffer sb = service.getMyinfo();
 		
-		request.setAttribute("date", str);
+		request.setAttribute("myinfo", sb);
 		
-		return "/view/date.jsp";
+		return "/view/myinfo.jsp";
 	}
 
 }

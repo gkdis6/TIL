@@ -19,4 +19,14 @@ public class CommandService {
 		
 		return dt.toLocaleString();
 	}
+
+	public StringBuffer getMyinfo() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<li> 이름 : 홍길동 <br>"); 
+        sb.append("<li> 나이 : 30 "); 
+        sb.append("<li> 보유기술 : Java, Jsp, Spring <br>"); 
+        sb.append("<li> 성격 : 매우 호의적이다. <br>"); 
+		
+        return sb;
+	}
 }
