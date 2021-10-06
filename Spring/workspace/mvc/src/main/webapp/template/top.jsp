@@ -41,7 +41,8 @@ String root = request.getContextPath();
       <ul class="dropdown-menu">
         <li><a href="<%=root%>/mvc/hello.do">인삿말</a></li>
         <li><a href="<%=root%>/mvc/date.do">오늘의 날짜</a></li>           
-        <li><a href="<%=root%>/mvc/myinfo.do">나의 정보</a></li>               
+        <li><a href="<%=root%>/mvc/myinfo.do">나의 정보</a></li>    
+        <li><a href="<%=root%>/mvc/team.do">팀목록</a></li>               
       </ul>
     </li>
     <li class="dropdown">

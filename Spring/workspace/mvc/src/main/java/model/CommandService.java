@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.util.*;
 
 public class CommandService {
 
@@ -28,5 +28,50 @@ public class CommandService {
         sb.append("<li> 성격 : 매우 호의적이다. <br>"); 
 		
         return sb;
+	}
+	
+	public List<Map> getTeam(){
+		List<Map> list = new ArrayList();;
+		Map map = new HashMap();
+		map.put("no", 1);
+		map.put("name", "홍길동");
+		map.put("age", 30);
+		map.put("skill", "java");
+		map.put("person", "착하다");
+		list.add(map);
+		
+		map = new HashMap();
+		map.put("no", 2);
+		map.put("name", "홍길동2");
+		map.put("age", 31);
+		map.put("skill", "java");
+		map.put("person", "착하다");
+		list.add(map);
+		
+		map = new HashMap();
+		map.put("no", 3);
+		map.put("name", "홍길동3");
+		map.put("age", 32);
+		map.put("skill", "jsp");
+		map.put("person", "착하다");
+		list.add(map);
+		
+		map = new HashMap();
+		map.put("no", 4);
+		map.put("name", "홍길동4");
+		map.put("age", 33);
+		map.put("skill", "java, kotlin");
+		map.put("person", "착하다");
+		list.add(map);
+		
+		map = new HashMap();
+		map.put("no", 5);
+		map.put("name", "홍길동5");
+		map.put("age", 34);
+		map.put("skill", "kotlin");
+		map.put("person", "착하다");
+		list.add(map);
+		
+		return list;
 	}
 }
