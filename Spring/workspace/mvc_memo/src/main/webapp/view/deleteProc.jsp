@@ -1,25 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
  <%@ page import="java.util.*" %>
  <%
- 	request.setCharacterEncoding("utf-8");
- %>
- <jsp:useBean class="memo.MemoDAO" id="dao"/>
- <jsp:useBean class="memo.MemoDTO" id="dto"/>
- <jsp:setProperty name="dto" property="*" />
-<%
-	Map map = new HashMap();
-	map.put("memono", dto.getMemono());
-	map.put("passwd", dto.getPasswd());
-	
-	int memono = dto.getMemono();
-	
-	boolean pflag = dao.passCheck(map);
-	
-	boolean flag = false;
-	
-	if(pflag){
-		flag = dao.delete(memono);
-	}
+ 	boolean pflag = (boolean)request.getAttribute("pflag");
+ 	boolean flag = (boolean)request.getAttribute("flag");
 %>	
 <!DOCTYPE html> 
 <html> 
@@ -28,7 +11,7 @@
   <meta charset="utf-8">
   <script>
   function list(){
-	  let url = "list.jsp";
+	  let url = "list.do";
 		url += "?col=<%=request.getParameter("col") %>";
 		url += "&word=<%=request.getParameter("word") %>";
 		url += "&nowPage=<%=request.getParameter("nowPage") %>";
@@ -38,7 +21,6 @@
   </script>
 </head>
 <body> 
-<jsp:include page="/menu/top.jsp"/>
 <div class="container">
 <div class="well well-lg">
 	<%

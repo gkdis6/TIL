@@ -1,35 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
 <%@ page import="java.util.*, model.*, utility.*" %> 
  <%
- 	//검색 관련
- 	String col = Utility.checkNull(request.getParameter("col"));
- 	String word = Utility.checkNull(request.getParameter("word"));
  	
- 	if(col.equals("total")){
- 		word = "";
- 	}
- 	
- 	//paging 관련
- 	int nowPage = 1;
- 	if(request.getParameter("nowPage") != null ){
- 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
- 	}
- 	
- 	int recordPerPage = 5;
- 	
- 	int sno = ((nowPage-1) * recordPerPage) + 1;
- 	int eno = nowPage * recordPerPage;
- 	
- 	Map map = new HashMap();
- 	map.put("col", col);
- 	map.put("word", word);
- 	map.put("sno",sno);
- 	map.put("eno",eno);
- 	List<MemoDTO> list = dao.list(map);
- 	
- 	int total = dao.total(col, word);
- 	
- 	String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+ 	List<MemoDTO> list = (List<MemoDTO>)request.getAttribute("list");
+ 	String paging = (String)request.getAttribute("paging");
+ 	String col = (String)request.getAttribute("col");
+ 	String word = (String)request.getAttribute("word");
+ 	int nowPage = (int)request.getAttribute("nowPage");
  	
  %>
  
@@ -40,7 +17,7 @@
   <meta charset="utf-8">
   <script>
   function update(memono){
-	  let url = "updateForm.jsp";
+	  let url = "update.do";
 	  url += "?memono="+memono;
 	  url += "&col=<%=col%>";
 	  url += "&word=<%=word%>";
@@ -51,10 +28,9 @@
   </script>
 </head>
 <body> 
-<jsp:include page="/menu/top.jsp"/>
 <div class="container">
 <h1>목록</h1>
- <form action='list.jsp' class='form-inline' >
+ <form action='list.do' class='form-inline' >
 	<div class="form-group">
 		<select class="form-control" name="col">
 			<option value="wname"
@@ -78,7 +54,7 @@
 		<input type="search" class="form-control" placeholder='검색어를 입력하세요' name="word" value="<%=word%>">
 	</div>
 	<button class="btn">검색</button>
-	<button type = "button" class="btn" onclick="location.href='createForm.jsp'">등록</button>
+	<button type = "button" class="btn" onclick="location.href='create.do'">등록</button>
 </form>
 <table class = "table table-striped">
 	<thead>
@@ -101,7 +77,7 @@
 					<td><a href="javascript:update('<%=dto.getMemono()%>')"><%=dto.getTitle() %></a></td>
 					<td><%=dto.getWdate() %>
 					<%if(Utility.compareDay(dto.getWdate())){ %>
-						<img src="../images/new.gif">	
+						<img src="../template/images/new.gif">	
 					<%}%>
 					</td>
 				</tr>

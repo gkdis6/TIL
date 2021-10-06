@@ -1,12 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
-<%@ page import="memo.MemoDTO" %>
-<jsp:useBean class="memo.MemoDAO" id="dao"/>
+<%@ page import="model.MemoDTO" %>
+<jsp:useBean class="model.MemoDAO" id="dao"/>
 <%
-	int memono = Integer.parseInt(request.getParameter("memono"));
-
-	dao.upViewCnt(memono);
-	
-	MemoDTO dto = dao.read(memono);
+	MemoDTO dto = (MemoDTO)request.getAttribute("dto");
 	
 	String content = dto.getContent().replaceAll("\r\n", "<br>");
 %>
@@ -18,7 +14,7 @@
   <meta charset="utf-8">
   <script>
   	function update(){
-  		let url = "updateForm.jsp";
+  		let url = "update.do";
   		url += "?bbsno=<%=dto.getMemono()%>";
   		url += "&col=<%=request.getParameter("col") %>";
 		url += "&word=<%=request.getParameter("word") %>";
@@ -27,7 +23,7 @@
   		location.href=url;
   	}
 	function del(){
-		let url = "deleteForm.jsp";
+		let url = "delete.do";
 		url += "?bbsno=<%=dto.getMemono()%>";
 		url += "&col=<%=request.getParameter("col") %>";
 		url += "&word=<%=request.getParameter("word") %>";
@@ -36,7 +32,7 @@
 		location.href=url;
 	}
 	function list(){
-		  let url = "list.jsp";
+		  let url = "list.do";
 			url += "?col=<%=request.getParameter("col") %>";
 			url += "&word=<%=request.getParameter("word") %>";
 			url += "&nowPage=<%=request.getParameter("nowPage") %>";
@@ -46,7 +42,6 @@
   </script>
 </head>
 <body> 
-<jsp:include page="/menu/top.jsp"/>
 <div class="container">
 <h2><%=dto.getTitle() %></h2>
 <div class="panel panel-default">

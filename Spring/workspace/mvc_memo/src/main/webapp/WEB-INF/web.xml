@@ -18,7 +18,7 @@
   		<param-value>/Users/sangyongpark/TIL/Spring/workspace/mvc_memo/src/main/webapp/WEB-INF/config/config.properties</param-value>
   	</init-param>
   	<init-param>
-  		<param-name>template</param-name>
+  		<param-name>templatePage</param-name>
   		<param-value>/template/template.jsp</param-value>
   	</init-param>
   </servlet>

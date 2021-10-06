@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
-<%@ page import="memo.MemoDTO" %>
-<jsp:useBean class="memo.MemoDAO" id="dao"/>
+<%@ page import="model.MemoDTO" %>
+<jsp:useBean class="model.MemoDAO" id="dao"/>
 <%
 	int memono = Integer.parseInt(request.getParameter("memono"));
 
@@ -17,7 +17,7 @@
   <meta charset="utf-8">
   <script>
 	function del(){
-		let url = "deleteForm.jsp";
+		let url = "delete.do";
 		url += "?memono=<%=dto.getMemono()%>";
 		url += "&col=<%=request.getParameter("col") %>";
 		url += "&word=<%=request.getParameter("word") %>";
@@ -26,7 +26,7 @@
 		location.href=url;
 	}
 	function list(){
-		  let url = "list.jsp";
+		  let url = "list.do";
 			url += "?col=<%=request.getParameter("col") %>";
 			url += "&word=<%=request.getParameter("word") %>";
 			url += "&nowPage=<%=request.getParameter("nowPage") %>";
@@ -36,11 +36,10 @@
   </script>
 </head>
 <body> 
-<jsp:include page="/menu/top.jsp"/>
 <div class="container">
 <h1 class="col-sm-offset-2 col-sm-10">메모 수정</h1>
 <form class="form-horizontal" 
-      action="updateProc.jsp"
+      action="updateProc.do"
       method="post"
       >
  <input type="hidden" name="memono" value='<%=dto.getMemono() %>'>

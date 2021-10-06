@@ -1,12 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
  <%
-	request.setCharacterEncoding("utf-8");
- %>
- <jsp:useBean class="memo.MemoDAO" id="dao"/>
- <jsp:useBean class="memo.MemoDTO" id="dto"/>
- <jsp:setProperty name="dto" property="*" />
- <%
-	boolean flag = dao.create(dto);
+	boolean flag = (boolean)request.getAttribute("flag");
 %>	
 <!DOCTYPE html> 
 <html> 
@@ -15,7 +9,6 @@
   <meta charset="utf-8">
 </head>
 <body> 
-<jsp:include page="/menu/top.jsp"/>
 <div class="container">
 <div class="well well-lg">
 <%
@@ -26,6 +19,12 @@
 	}
 %>
 </div>
+    <button class="btn"
+    onclick="location.href='create.do'"
+    >다시 등록</button>
+    <button type="button" class="btn"
+    onclick="location.href='list.do'"
+    >목록</button>
 </div>
 </body> 
 </html> 

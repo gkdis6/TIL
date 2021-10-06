@@ -9,11 +9,10 @@
   <meta charset="utf-8">
 </head>
 <body> 
-<jsp:include page="/menu/top.jsp"/>
 <div class="container">
 <h1 class="col-sm-offset-2 col-sm-10">메모 생성</h1>
 <form class="form-horizontal" 
-      action="createProc.jsp"
+      action="createProc.do"
       method="post"
       >
       <input type="hidden" name="wname" id="wname" value='<%=name%>'>
