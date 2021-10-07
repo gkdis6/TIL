@@ -23,11 +23,11 @@
   </div>
   <h2>수량</h2>
   <div class="panel panel-default">
-    <div class="panel-body">${param.count }</div>
+    <div class="panel-body">${param.count }</div> <%-- <%request.getParameter("count")%> --%>
   </div>
   <h2>결제</h2>
   <div class="panel panel-default">
-    <div class="panel-body">${payment }</div>
+    <div class="panel-body">${payment }</div> <%-- <%request.getAttribute("payment") %> --%>
   </div>
 </div>
 </body>
