@@ -59,7 +59,7 @@ public class HelloController {
 	
 	@RequestMapping("/test4")
 	public String test4(Member member) {
-		
+		//model.addAttribute(member); 자동으로 돼서 생략
 		return "test2";
 	}
 }
