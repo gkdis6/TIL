@@ -15,7 +15,7 @@
   <script>
   	function update(){
   		let url = "update.do";
-  		url += "?bbsno=<%=dto.getMemono()%>";
+  		url += "?memono=<%=dto.getMemono()%>";
   		url += "&col=<%=request.getParameter("col") %>";
 		url += "&word=<%=request.getParameter("word") %>";
 		url += "&nowPage=<%=request.getParameter("nowPage") %>";
@@ -24,7 +24,7 @@
   	}
 	function del(){
 		let url = "delete.do";
-		url += "?bbsno=<%=dto.getMemono()%>";
+		url += "?memono=<%=dto.getMemono()%>";
 		url += "&col=<%=request.getParameter("col") %>";
 		url += "&word=<%=request.getParameter("word") %>";
 		url += "&nowPage=<%=request.getParameter("nowPage") %>";

@@ -1,7 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
 <%@ page import="memo.MemoDTO" %>
+<%@ page import="utility.*" %>
 <jsp:useBean class="memo.MemoDAO" id="dao"/>
 <%
+	String col = Utility.checkNull(request.getParameter("col"));
+	String word = Utility.checkNull(request.getParameter("word"));
+	
+	if(col.equals("total")){
+		word = "";
+	}
+	
+	int nowPage = 1;
+	if(request.getParameter("nowPage") != null ){
+ 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
+ 	}
+	
 	int memono = Integer.parseInt(request.getParameter("memono"));
 
 	dao.upViewCnt(memono);
@@ -17,20 +30,20 @@
   <title>메모</title>
   <meta charset="utf-8">
   <script>
-  	function update(){
+  	function update(no){
   		let url = "updateForm.jsp";
-  		url += "?bbsno=<%=dto.getMemono()%>";
-  		url += "&col=<%=request.getParameter("col") %>";
-		url += "&word=<%=request.getParameter("word") %>";
-		url += "&nowPage=<%=request.getParameter("nowPage") %>";
+  		url += "?memono="+no;
+  		url += "&col=<%=col%>";
+		url += "&word=<%=word%>";
+		url += "&nowPage=<%=nowPage%>";
   		
   		location.href=url;
   	}
-	function del(){
+	function del(no){
 		let url = "deleteForm.jsp";
-		url += "?bbsno=<%=dto.getMemono()%>";
-		url += "&col=<%=request.getParameter("col") %>";
-		url += "&word=<%=request.getParameter("word") %>";
+		url += "?memono="+no;
+		url += "&col=<%=col%>";
+		url += "&word=<%=word%>";
 		url += "&nowPage=<%=request.getParameter("nowPage") %>";
 		
 		location.href=url;
@@ -60,9 +73,9 @@
 	<div class="panel-body"><%=dto.getWdate() %></div>
 	
 </div>
-	<button class = "btn" onclick="update()">수정</button>
-	<button class = "btn" onclick="del()">삭제</button>
-	<button class = "btn" onclick="list()">목록</button>
+	<button type="button" class = "btn" onclick="update(<%=memono%>)">수정</button>
+	<button type="button" class = "btn" onclick="del(<%=memono%>)">삭제</button>
+	<button type="button" class = "btn" onclick="list()">목록</button>
  </div>
 </body> 
 </html> 

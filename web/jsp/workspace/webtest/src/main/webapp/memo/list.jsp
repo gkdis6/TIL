@@ -40,8 +40,8 @@
   <title>homepage</title>
   <meta charset="utf-8">
   <script>
-  function update(memono){
-	  let url = "updateForm.jsp";
+  function read(memono){
+	  let url = "read.jsp";
 	  url += "?memono="+memono;
 	  url += "&col=<%=col%>";
 	  url += "&word=<%=word%>";
@@ -99,7 +99,7 @@
 		%>
 				<tr>
 					<td><%=dto.getMemono() %></td>
-					<td><a href="javascript:update('<%=dto.getMemono()%>')"><%=dto.getTitle() %></a></td>
+					<td><a href="javascript:read('<%=dto.getMemono()%>')"><%=dto.getTitle() %></a></td>
 					<td><%=dto.getWdate() %>
 					<%if(Utility.compareDay(dto.getWdate())){ %>
 						<img src="../images/new.gif">	

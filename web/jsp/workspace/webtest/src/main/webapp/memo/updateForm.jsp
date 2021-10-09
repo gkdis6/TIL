@@ -1,14 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
-<%@ page import="memo.MemoDTO" %>
+<%@ page import="memo.MemoDTO, utility.*"%>
 <jsp:useBean class="memo.MemoDAO" id="dao"/>
 <%
+
+	String col = Utility.checkNull(request.getParameter("col"));
+	String word = Utility.checkNull(request.getParameter("word"));
+
+	if(col.equals("total")){
+		word = "";
+	}
+
+	int nowPage = 1;
+	if(request.getParameter("nowPage") != null ){
+		nowPage = Integer.parseInt(request.getParameter("nowPage"));
+	}
 	int memono = Integer.parseInt(request.getParameter("memono"));
 
 	MemoDTO dto = dao.read(memono);
 	
-	String nowPage = request.getParameter("nowPage");
- 	String col = request.getParameter("col");
- 	String word = request.getParameter("word");
 %>
 <!DOCTYPE html> 
 <html> 
@@ -71,7 +80,7 @@
    <div class="form-group">
    <div class="col-sm-offset-2 col-sm-5">
     <button class ="btn">수정</button>
-	<button type = "button" class ="btn" onclick="del()">삭제</button>
+	<!-- <button type = "button" class ="btn" onclick="del()">삭제</button> -->
 	<button type ="button" class = "btn" onclick="list()">취소</button>
    </div>
  </div>

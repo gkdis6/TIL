@@ -5,8 +5,8 @@
   <title>homepage</title>
   <meta charset="utf-8">
   <script>
-  function update(){
-	  let url = "update.do";
+  function read(){
+	  let url = "read.do";
 	  url += "?memono="+<%= request.getParameter("memono") %>;
 	  url += "&col=<%= request.getParameter("col") %>";
 	  url += "&word=<<%= request.getParameter("word") %>";
@@ -16,6 +16,11 @@
   }
   </script>
 </head>
+<style>
+  #red{
+    color:red;
+  }
+  </style>
 <body> 
 <div class="container">
 <h1 class="col-sm-offset-2 col-sm-10">메모 삭제</h1>
@@ -38,7 +43,7 @@
    <div class="form-group">
    <div class="col-sm-offset-2 col-sm-5">
     <button class="btn">삭제</button>
-    <button type="button" onclick="update()" class="btn">취소</button>
+    <button type="button" onclick="read()" class="btn">취소</button>
    </div>
  </div>
 </form>
