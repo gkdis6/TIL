@@ -20,5 +20,15 @@
     <put-attribute name="body"
       value="/WEB-INF/views/createForm.jsp" />
   </definition>
+  <definition name="/bbs/list" extends="main">
+    <put-attribute name="title" value="게시판 목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/list.jsp" />
+  </definition>
+  <definition name="/bbs/read" extends="main">
+    <put-attribute name="title" value="게시판 조회"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/read.jsp" />
+  </definition>
  
 </tiles-definitions>
