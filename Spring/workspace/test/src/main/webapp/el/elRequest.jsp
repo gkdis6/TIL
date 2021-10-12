@@ -13,7 +13,7 @@ request.setAttribute("name", "JAVA 개발자");
 
 		request의 name 속성(스크립틀릿 방식): <%=request.getAttribute("name")%><br> 
 		request의 name 속성(EL-requestScope.name): ${requestScope.name}<br /><br /> 
-		request의 name 속성(EL-name): ${name} <br /><br />
+		request의 name 속성(EL-name): ${name} <br /><br /> 
 	</h2>
 </body>
 </html>
