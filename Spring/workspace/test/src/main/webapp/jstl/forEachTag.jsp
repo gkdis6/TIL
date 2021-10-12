@@ -39,6 +39,6 @@
 <c:forEach var="i" items="${map}"> 
     ${i.key} = ${i.value}<br> 
 </c:forEach> 
-
+ 
 </body>
 </html>
