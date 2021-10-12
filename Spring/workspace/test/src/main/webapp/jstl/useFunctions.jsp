@@ -20,7 +20,7 @@
 	<br> substringAfter(str1,str2) = ${fn:substringAfter(str1,str2) }
 	<br> substringBefore(str1,str2) = ${fn:substringBefore(str1,str2) }
 	<br> trim(str1) = ${fn:trim(str1) }
-	<br> replace(str1, src, dest)=${fn:replace(str1, "","-") }
+	<br> replace(str1, src, dest)=${fn:replace(str1, " ","-") }
 	<br> indexOf(str1,str2) = ${fn:indexOf(str1,str2) }
 	<br> starstWith(str1,str2) = ${fn:startsWith(str1,'Fun')}
 	<br> endsWith(str1,str2) = ${fn:endsWith(str1,"합니다.")}
