@@ -20,4 +20,4 @@ name 파라미터의 값이 ${param.name} 입니다.<br>
 당신의 나이는 18세 이상입니다. 
 </c:if> 
 </body>
-</html>
+</html> 
