@@ -17,6 +17,6 @@
 
 	<p>
 		삭제한 후의 num1 = ${num1} <br> 
-		삭제한 후의 num1 + num2 = ${num1 + num2}
+		삭제한 후의 num1 + num2 = ${num1 + num2} 
 </body>
 </html>
