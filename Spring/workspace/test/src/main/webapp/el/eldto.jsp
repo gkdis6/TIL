@@ -30,7 +30,7 @@ request.setAttribute("dto", dto);
 		<br> Type3: 주 연(X): ${requestScope.movie}<br>
 		<br> Type4: 주 연(X): ${movie}<br>
 		<br>
-
+ 
 	</h2>
 </body>
 </html>

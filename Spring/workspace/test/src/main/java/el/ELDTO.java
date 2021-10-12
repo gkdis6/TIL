@@ -8,7 +8,7 @@ public class ELDTO {
         super(); 
         // TODO Auto-generated constructor stub 
     } 
-
+ 
    public ELDTO(String name, String movie) { 
         super(); 
         this.name = name; 
