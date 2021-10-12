@@ -18,8 +18,11 @@
 	out.println("가산점: " + (tot + 5) + "<br/>");
 	out.println("평균: " + avg + "<br/>");
 	%>
-
-	<br>
-	<br> 성명:${name}<br> 총점:${tot}<br> 가산점:${tot+5}<br>
+	
+	<br><br> 
+	성명:${name}<br> 
+	총점:${tot}<br> 
+	가산점:${tot+5}<br>
 	평균:${avg} 점<br>
 </h2>
+ 
