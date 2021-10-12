@@ -14,4 +14,18 @@ public interface BbsMapper {
 
 	BbsDTO read(int bbsno);
 
+	int passCheck(Map map);
+
+	int update(BbsDTO dto);
+
+	Object readReply(int bbsno);
+
+	void upAnsnum(Map map);
+
+	int createReply(BbsDTO dto);
+
+	void delete(int bbsno);
+
+	int checkRefnum(int bbsno);
+
 }

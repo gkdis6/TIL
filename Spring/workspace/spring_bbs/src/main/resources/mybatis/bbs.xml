@@ -82,4 +82,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where r>=#{sno} and r<=#{eno}
 	]]>
 	</select>
+	
+	<select id="passCheck" parameterType="Map" resultType="int">
+		SELECT
+        COUNT(bbsno) as cnt
+        FROM bbs
+        WHERE bbsno=#{bbsno} AND passwd=#{passwd}
+	</select>
+	
+	<update id="update" parameterType="com.study.model.BbsDTO">
+		update bbs
+		<set>
+			wname = #{wname},
+			title = #{title},
+			content = #{content},
+			<if test="filesize > 0">
+				filename = #{filename},
+				filesize = #{filesize}
+			</if>
+		</set>
+		where bbsno = #{bbsno}
+	</update>
+	
+	<insert id="createReply" parameterType="com.study.model.BbsDTO">
+	INSERT INTO bbs(bbsno, wname, title,
+	content, passwd, wdate, grpno,
+	indent, ansnum,filename,filesize, refnum)
+	VALUES(
+	(SELECT NVL(MAX(bbsno), 0)+1 FROM bbs),
+	#{wname}, #{title}, #{content}, #{passwd}, sysdate,
+	#{grpno}, #{indent}+1, #{ansnum}+1, #{filename}, #{filesize}, #{bbsno} )
+	</insert>
+	
+	<select id="checkRefnum" parameterType="int" resultType="int">
+	SELECT
+	count(*) FROM bbs
+	WHERE refnum = #{bbsno}
+	</select>
+	
+	<select id="readReply" parameterType="int"
+		resultType="com.study.model.BbsDTO">
+		select
+		bbsno, grpno, indent, ansnum, title
+		from bbs
+		where bbsno = #{bbsno}
+	</select>
+	
+	<update id="upAnsnum" parameterType="Map">
+		update bbs
+		set ansnum =
+		ansnum + 1
+		where grpno = #{grpno}
+		and ansnum > #{ansnum}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+       DELETE FROM bbs
+       WHERE bbsno = #{bbsno}
+    </delete>
 </mapper>

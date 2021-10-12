@@ -130,7 +130,7 @@ public class Utility {
                                     filename = originalFilename;
                             }
                             // make server full path to save
-                            String serverFullPath = basePath + "\\" + filename;
+                            String serverFullPath = basePath + "/" + filename;
 
                             System.out.println("fileName: " + filename);
                             System.out.println("serverFullPath: " + serverFullPath);
@@ -157,4 +157,13 @@ public class Utility {
 
             return filename;
     }
+
+		public static void deleteFile(String basePath, String oldfile) {
+			File file = new File(basePath, oldfile);
+			
+			if(file.exists()) {
+				file.delete();
+			}
+			
+		}
 }

@@ -30,7 +30,7 @@ public class BbsDTO {
 	private int filesize;
 	/** form에서 선택한 파일을 서버에서 처리할 수 있는 타입으로 선언 */
 	private MultipartFile filenameMF;
-	
+	private int refnum;
 	
 	public String getFilename() {
 		return filename;
@@ -57,7 +57,7 @@ public class BbsDTO {
 	}
 
 	public BbsDTO(int bbsno, String wname, String title, String content, String passwd, int viewcnt, String wdate,
-			int grpno, int indent, int ansnum, String filename, int filesize, MultipartFile filenameMF) {
+			int grpno, int indent, int ansnum, String filename, int filesize, MultipartFile filenameMF, int refnum) {
 		super();
 		this.bbsno = bbsno;
 		this.wname = wname;
@@ -72,6 +72,7 @@ public class BbsDTO {
 		this.filename = filename;
 		this.filesize = filesize;
 		this.filenameMF = filenameMF;
+		this.refnum = refnum;
 	}
 
 	@Override
@@ -79,7 +80,15 @@ public class BbsDTO {
 		return "BbsDTO [bbsno=" + bbsno + ", wname=" + wname + ", title=" + title + ", content=" + content + ", passwd="
 				+ passwd + ", viewcnt=" + viewcnt + ", wdate=" + wdate + ", grpno=" + grpno + ", indent=" + indent
 				+ ", ansnum=" + ansnum + ", filename=" + filename + ", filesize=" + filesize + ", filenameMF="
-				+ filenameMF + "]";
+				+ filenameMF + ", refnum="+ refnum + "]";
+	}
+
+	public int getRefnum() {
+		return refnum;
+	}
+
+	public void setRefnum(int refnum) {
+		this.refnum = refnum;
 	}
 
 	public BbsDTO() {

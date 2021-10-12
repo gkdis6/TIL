@@ -25,6 +25,7 @@
 		url += "&col=<%=request.getParameter("col") %>";
 		url += "&word=<%=request.getParameter("word") %>";
 		url += "&nowPage=<%=request.getParameter("nowPage") %>";
+		url += "&oldfile=<%=dto.getFilename()%>";
 		
 		location.href=url;
 	}

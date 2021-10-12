@@ -30,5 +30,20 @@
     <put-attribute name="body"
       value="/WEB-INF/views/read.jsp" />
   </definition>
+  <definition name="/bbs/update" extends="main">
+    <put-attribute name="title" value="게시판 수정"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/updateForm.jsp" />
+  </definition>
+  <definition name="/bbs/reply" extends="main">
+    <put-attribute name="title" value="게시판 답변"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/replyForm.jsp" />
+  </definition>
+  <definition name="/bbs/delete" extends="main">
+    <put-attribute name="title" value="게시판 삭제"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/deleteForm.jsp" />
+  </definition>
  
 </tiles-definitions>
