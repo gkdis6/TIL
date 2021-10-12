@@ -9,5 +9,5 @@ public class DateUtil {
      
     public static String format(Date date) { 
         return formatter.format(date); 
-    } 
+    }  
 } 
