@@ -16,4 +16,4 @@
 변수 map에 저장된 name 값: ${map.name}<br> 
 변수 map에 저장된 aromi값: ${map.aromi} 
 </body>
-</html>
+</html> 
