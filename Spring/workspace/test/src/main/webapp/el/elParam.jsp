@@ -17,7 +17,7 @@
 		<%
 		out.println(code);
 		%>
-		<br> code 파라미터(EL 방식) : ${param.code} <br />
+		<br> code 파라미터(EL 방식) : ${param.code} <br /> 
 	</h2>
 
 </body>
