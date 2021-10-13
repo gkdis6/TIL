@@ -121,7 +121,7 @@ public class BbsController {
 	}
 
 	@GetMapping("/bbs/read")
-	public String read(int bbsno, Model model) {
+	public String read(int bbsno, Model model, HttpServletRequest request) {
 
 		mapper.upViewcnt(bbsno);
 		BbsDTO dto = mapper.read(bbsno);
@@ -131,6 +131,25 @@ public class BbsController {
 
 		model.addAttribute("dto", dto);
 
+		/* 댓글 관련 시작 */
+        int nPage = 1;
+        if (request.getParameter("nPage") != null) {
+                nPage = Integer.parseInt(request.getParameter("nPage"));
+        }
+        int recordPerPage = 3;
+
+        int sno = ((nPage - 1) * recordPerPage) + 1;
+        int eno = nPage * recordPerPage;
+
+        Map map = new HashMap();
+        map.put("sno", sno);
+        map.put("eno", eno);
+        map.put("nPage", nPage);
+
+        model.addAllAttributes(map);
+
+        /* 댓글 처리 끝 */
+		
 		return "/bbs/read";
 	}
 
@@ -342,4 +361,5 @@ public class BbsController {
 		response.getOutputStream().close();
 	}
 
+	
 }
