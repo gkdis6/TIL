@@ -65,7 +65,7 @@
 			<div class="panel-body">${dto.title}</div>
 
 			<div class="panel-heading">내용</div>
-			<div class="panel-body" style="height: 200px">${dto.content}</div>
+			<div class="panel-body">${dto.content}</div>
 
 			<div class="panel-heading">조회수</div>
 			<div class="panel-body">${dto.viewcnt}</div>

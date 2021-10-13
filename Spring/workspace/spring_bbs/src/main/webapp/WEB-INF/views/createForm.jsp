@@ -5,12 +5,45 @@
 <head>
 <title>homepage</title>
 <meta charset="utf-8">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js">
+	
+</script>
+<script type="text/JavaScript">
+	$(function() {
+		CKEDITOR.replace('content'); // <TEXTAREA>태그 id 값
+	});
+
+	function checkIn(f) {
+		if (f.wname.value == ""){
+            alert("글쓴이를 입력하세요");
+            f.wname.focus()
+            return false;
+    	}
+		if (f.title.value == "") {
+			alert("제목를 입력하세요");
+			f.title.focus();
+			return false;
+		}
+		if (CKEDITOR.instances['content'].getData() == '') {
+			window.alert('내용을 입력해 주세요.');
+			CKEDITOR.instances['content'].focus();
+			return false;
+		}
+		if (f.passwd.value == "") {
+			alert("패스워드를 입력하세요");
+			f.passwd.focus();
+			return false;
+		}
+
+	};
+</script>
 </head>
 <body>
 	<div class="container">
 		<h1 class="col-sm-offset-2 col-sm-10">게시판 생성</h1>
-		<form class="form-horizontal" action="create" method="post"
-			enctype='multipart/form-data'>
+		<form class="form-horizontal" action="./create" method="post"
+			enctype='multipart/form-data' onsubmit="return checkIn(this)">
 
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="wname">작성자</label>
@@ -48,7 +81,7 @@
 						class="form-control">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-5">
 					<button class="btn">등록</button>
