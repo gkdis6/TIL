@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
-<%  boolean flag = (boolean) request.getAttribute("flag"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html> 
 <html> 
 <head>
@@ -13,26 +13,25 @@
 </head>
 <body> 
 <div class="container">
-<%
-if(flag){
-	out.print("<div class='well well-lg'>");
-	out.print("답변있는 글이므로 삭제할 수 없습니다.<br><br>");
-	out.print("<button class='btn' onclick='history.back()'>다시시도</button>");
-	out.print("<br></div>");
-}else{
-	    
-%>
+
+<c:choose>
+<c:when test="${flag}">
+<div class='well well-lg'>
+답변있는 글이므로 삭제할 수 없습니다.<br><br>
+<button class='btn' onclick='history.back()'>다시시도</button>
+<br></div>
+</c:when>
+<c:otherwise>
 <h1 class="col-sm-offset-2 col-sm-10">삭제</h1>
 <form class="form-horizontal" 
       action="delete"
       method="post"
-      
       >
- <input type="hidden" name='bbsno' value='<%= request.getParameter("bbsno")%>'>
- <input type="hidden" name='col' value='<%= request.getParameter("col")%>'>
- <input type="hidden" name='word' value='<%= request.getParameter("word")%>'>
- <input type="hidden" name='nowPage' value='<%= request.getParameter("nowPage")%>'>
- <input type="hidden" name='oldfile' value='<%= request.getParameter("oldfile")%>'>
+ <input type="hidden" name='bbsno' value='${param.bbsno}'>
+ <input type="hidden" name='col' value='${param.col}'>
+ <input type="hidden" name='word' value='${param.word}'>
+ <input type="hidden" name='nowPage' value='${param.nowPage}'>
+ <input type="hidden" name='oldfile' value='${param.oldfile}'>
   <div class="form-group">
     <label class="control-label col-sm-2" for="passwd">비밀번호</label>
     <div class="col-sm-6">
@@ -49,9 +48,8 @@ if(flag){
    </div>
  </div>
 </form>
-<%
-}
-%>
+</c:otherwise>
+</c:choose>
 </div>
 </body> 
 </html> 

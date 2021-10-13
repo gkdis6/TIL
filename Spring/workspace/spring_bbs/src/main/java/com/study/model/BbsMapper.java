@@ -24,7 +24,7 @@ public interface BbsMapper {
 
 	int createReply(BbsDTO dto);
 
-	void delete(int bbsno);
+	int delete(int bbsno);
 
 	int checkRefnum(int bbsno);
 

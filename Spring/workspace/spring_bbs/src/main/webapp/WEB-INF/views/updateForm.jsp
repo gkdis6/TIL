@@ -1,8 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %> 
-<%@ page import="com.study.model.BbsDTO" %>
-<%
-    BbsDTO dto = (BbsDTO)request.getAttribute("dto");
-%> 
 <!DOCTYPE html> 
 <html> 
 <head>
@@ -17,29 +13,29 @@
       method="post"
       enctype="multipart/form-data"
       >
-  <input type="hidden" name='bbsno' value='<%=dto.getBbsno()%>'>
-  <input type="hidden" name='col' value='<%=request.getParameter("col")%>'>
-  <input type="hidden" name='word' value='<%=request.getParameter("word")%>'>
-  <input type="hidden" name='nowPage' value='<%=request.getParameter("nowPage")%>'>
-  <input type="hidden" name="oldfile" value="<%=dto.getFilename() %>">
+  <input type="hidden" name='bbsno' value='${dto.bbsno}'>
+  <input type="hidden" name='col' value='${param.col}'>
+  <input type="hidden" name='word' value='${param.word}'>
+  <input type="hidden" name='nowPage' value='${param.nowPage}'>
+  <input type="hidden" name="oldfile" value="${dto.filename}">
   
   <div class="form-group">
     <label class="control-label col-sm-2" for="wname">작성자</label>
     <div class="col-sm-6">
-      <input type="text" name="wname" id="wname" class="form-control" value="<%=dto.getWname()%>">
+      <input type="text" name="wname" id="wname" class="form-control" value="${dto.wname}">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="title">제목</label>
     <div class="col-sm-8">
-      <input type="text" name="title" id="title" class="form-control" value="<%=dto.getTitle()%>">
+      <input type="text" name="title" id="title" class="form-control" value="${dto.title}">
     </div>
   </div>
   
   <div class="form-group">
     <label class="control-label col-sm-2" for="content">내용</label>
     <div class="col-sm-8">
-    <textarea rows="12" cols="7" id="content" name="content" class="form-control"><%=dto.getContent() %></textarea>
+    <textarea rows="12" cols="7" id="content" name="content" class="form-control">${dto.content}</textarea>
     </div>
   </div>
   
@@ -52,7 +48,7 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="filenameMF">비밀번호</label>
     <div class="col-sm-6">
-      <input type="file" name="filenameMF" id="filenameMF" class="form-control">(<%=dto.getFilename() %>)
+      <input type="file" name="filenameMF" id="filenameMF" class="form-control">(${dto.filename})
     </div>
   </div>
    <div class="form-group">
