@@ -27,7 +27,7 @@
 
 
 
-## useBean 사용
+## import 사용
 
 ```jsp
 <%@ page import="model.Product" %>
@@ -49,6 +49,8 @@
 ```
 
 위의 코드를 useBean으로 하면 훨씬 간결한 코드를 얻을 수 있음. 위 아래 코드는 같은 기능을 가짐.
+
+## useBean 사용
 
 ```jsp
 <jsp:useBean class="model.Product" id="cpu" scope="request"/>
