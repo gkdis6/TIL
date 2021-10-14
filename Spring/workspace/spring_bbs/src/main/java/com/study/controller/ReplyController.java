@@ -9,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,29 +55,50 @@ public class ReplyController {
 		return new ResponseEntity<>(paging, HttpStatus.OK);
 
 	}
-	
+
 	@PostMapping("/bbs/reply/create")
-	  public ResponseEntity<String> create(@RequestBody ReplyDTO vo) {
-	 
-	    log.info("ReplyDTO1: " + vo.getContent());
-	    log.info("ReplyDTO1: " + vo.getId());
-	    log.info("ReplyDTO1: " + vo.getBbsno());
-	 
-	    vo.setContent(vo.getContent().replaceAll("/n/r", "<br>"));
-	 
-	    int flag = mapper.create(vo);
-	 
-	    log.info("Reply INSERT flag: " + flag);
-	 
-	    return flag == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
-	        : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	  }
-	 
-	  @GetMapping("/bbs/reply/{rnum}")
-	  public ResponseEntity<ReplyDTO> get(@PathVariable("rnum") int rnum) {
-	 
-	    log.info("get: " + rnum);
-	 
+	public ResponseEntity<String> create(@RequestBody ReplyDTO vo) {
+
+		log.info("ReplyDTO1: " + vo.getContent());
+		log.info("ReplyDTO1: " + vo.getId());
+		log.info("ReplyDTO1: " + vo.getBbsno());
+
+		vo.setContent(vo.getContent().replaceAll("/n/r", "<br>"));
+
+		int flag = mapper.create(vo);
+
+		log.info("Reply INSERT flag: " + flag);
+
+		return flag == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@GetMapping("/bbs/reply/{rnum}")
+	public ResponseEntity<ReplyDTO> get(@PathVariable("rnum") int rnum) {
+
+		log.info("get: " + rnum);
+
 		return new ResponseEntity<>(mapper.read(rnum), HttpStatus.OK);
+	}
+
+	@PutMapping("/bbs/reply/{rnum}")
+	public ResponseEntity<String> modify(@RequestBody ReplyDTO vo, @PathVariable("rnum") int rnum) {
+
+		log.info("rnum: " + rnum);
+		log.info("modify: " + vo);
+
+		return mapper.update(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+	}
+
+	@DeleteMapping("/bbs/reply/{rnum}")
+	public ResponseEntity<String> remove(@PathVariable("rnum") int rnum) {
+
+		log.info("remove: " + rnum);
+
+		return mapper.delete(rnum) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
 }

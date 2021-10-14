@@ -37,4 +37,16 @@ where bbsno=#{bbsno}
  where rnum = #{rnum}
 </select>
 
+<update id="update" parameterType="com.study.model.ReplyDTO">
+update reply
+set content = #{content}
+where rnum = #{rnum}
+ 
+</update>
+ 
+<delete id="delete" parameterType="int">
+delete from REPLY
+where rnum = #{rnum}
+</delete>
+
 </mapper>

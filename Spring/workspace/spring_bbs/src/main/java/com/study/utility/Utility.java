@@ -9,6 +9,8 @@ import java.util.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.study.model.ReplyMapper;
+
 public class Utility {
 	public static String checkNull(String str) {
 		if (str == null) {
@@ -208,5 +210,9 @@ public class Utility {
 
 		return str.toString();
 
+	}
+
+	public static int rcount(int bbsno, ReplyMapper rmapper) {
+		return rmapper.total(bbsno);
 	}
 }

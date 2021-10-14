@@ -80,7 +80,11 @@
 					<td>
 					<c:forEach begin="1" end="${dto.indent}">&nbsp;&nbsp;</c:forEach>
 					<c:if test="${dto.indent > 0}"><img src='${root }/images/re.jpg'></c:if>
+					<c:set var="rcount" value="${util:rcount(dto.bbsno, rmapper) }"/>
 					<a href="javascript:read('${dto.bbsno}')">${dto.title}</a>
+					<c:if test="${rcount > 0 }">
+						<span class="badge">${rcount }</span>
+					</c:if>
 					<c:if test="util:newImg(dto.wdate)">
 					<img src="${root}/images/new.gif">	
 					</c:if>

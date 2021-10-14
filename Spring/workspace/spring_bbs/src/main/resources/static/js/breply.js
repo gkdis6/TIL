@@ -66,5 +66,42 @@ class ReplyService {
 			});
 		});
 	}
+	
+	update(reply) {
+        return new Promise((resolve, reject) => {
+            console.log("rnum: " + reply.rnum);
+            $.ajax({
+                type: 'put',
+                url: './reply/' + reply.rnum,
+                data: JSON.stringify(reply),
+                contentType: "application/json; charset=utf-8",
+                success: function (result, status, xhr) {
+                    resolve(result);
+ 
+                },
+                error: function (xhr, status, er) {
+                    reject(er);
+ 
+                }
+            });
+        });
+    }
+    remove(rnum) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'delete',
+                url: './reply/' + rnum,
+                success: function (deleteResult, status, xhr) {
+                    resolve(deleteResult);
+ 
+                },
+                error: function (xhr, status, er) {
+                    reject(er);
+ 
+                }
+            });
+        });
+    }
+
 
 } //class end

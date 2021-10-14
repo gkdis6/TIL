@@ -20,13 +20,13 @@ function showList() {
 		.then(list => {
 			let str = ""
 
-			for (let i = 0; i < list.length; i++) {
+			for (var i = 0; i < list.length; i++) {
 				str += "<li class='list-group-item' data-rnum='" + list[i].rnum + "'>";
 				str += "<div><div class='header'><strong class='primary-font'>" + list[i].id + "</strong>";
 				str += "<small class='pull-right text-muted'>" + list[i].regdate + "</small></div>";
 				str += replaceAll(list[i].content, '\n', '<br>') + "</div></li>";
 			}
-
+			
 			replyUL.html(str);
 		})
 
@@ -121,3 +121,36 @@ $(".chat").on("click", "li", function(e) {
 
 		});
 });
+
+modalModBtn.on("click", function (e) {
+ 
+  let reply = { rnum: modal.data("rnum"), content: modalInputContent.val() };
+  //alert(reply.rnum);
+  replyService
+    .update(reply)
+    .then(result => {
+ 
+      //alert(result);
+      modal.modal("hide");
+      showList();
+          showPage();
+    });
+ 
+});//modify 
+ 
+//댓글 삭제
+modalRemoveBtn.on("click", function (e) {
+ 
+  let rnum = modal.data("rnum");
+ 
+  replyService
+    .remove(rnum)
+    .then(result => {
+ 
+      //alert(result);
+      modal.modal("hide");
+      showList();
+          showPage();
+    });
+ 
+});//remove

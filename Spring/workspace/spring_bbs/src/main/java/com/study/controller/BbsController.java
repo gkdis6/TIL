@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.study.model.BbsDTO;
 import com.study.model.BbsMapper;
+import com.study.model.ReplyMapper;
 import com.study.utility.Utility;
 
 @Controller
@@ -35,6 +36,9 @@ public class BbsController {
 	@Autowired
 	private BbsMapper mapper;
 
+	@Autowired
+    private ReplyMapper rmapper;
+	
 	@GetMapping("/")
 	public String home(Locale locale, Model model) {
 		Date date = new Date();
@@ -116,6 +120,10 @@ public class BbsController {
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
 
+		// list.jsp에서 댓글 갯수 가져올 <util:rcount(num,rmapper)>에서 사용할 
+		// rmapper(ReplyMapper)의 값을 request 객체에 담는다.
+		request.setAttribute("rmapper", rmapper); 
+		
 		return "/bbs/list";
 
 	}
