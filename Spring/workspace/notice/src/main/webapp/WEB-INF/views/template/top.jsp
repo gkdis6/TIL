@@ -48,8 +48,8 @@ String root = request.getContextPath();
     <li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">공지사항<span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="<%=root %>/notice/list">공지 목록</a></li>
-        <li><a href="<%=root %>/notice/create">공지 생성</a></li>
+        <li><a href="<%=root %>/list">공지 목록</a></li>
+        <li><a href="<%=root %>/create">공지 생성</a></li>
       </ul>
     </li>   
   </ul>
