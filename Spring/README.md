@@ -165,3 +165,68 @@ Spring Boot는 Spring framework보다 의존성 관리가 용이할 뿐만 아�
 - 의존성 관리를 쉽게 자동으로 할 수 있다.
 - 화면 기능은 간결하게 구현하면서 스프링과 더 빠르고 쉽게 연동할 수 있는 기능을 제공하는 thymeleaf가 표준
 
+# 비동기
+
+backend
+
+```java
+@PostMapping(value = "/", produces = "application/json")
+	@ResponseBody
+	public Map<String,String> login(@RequestBody UserDTO dto, HttpServletRequest request) throws IOException {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", (String)dto.getId());
+		map.put("password", (String)dto.getPassword());
+		int pcnt = service.login(map);
+
+		System.out.println("id : " +map.get("id") + " password : " + map.get("password") +" pcnt : " + pcnt);
+		
+		return map;
+	}
+```
+
+frontend
+
+```html
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+    <title>Company</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <form method="post">
+      <input class="login" id="id" name="id">
+      <button type="button" id="login">login</button>
+    </form>
+  </body>
+  <script type="text/javascript">
+	$('#login_btn').on('click',function(){
+		let form = {
+			id : $('#id').val(),
+			password : $('#password').val()
+		};
+		alert(form.id+":"+form.password);
+		$.ajax({
+			url : "./",
+			type : "POST",
+			data : JSON.stringify(form),
+			contentType : "application/json; charset=utf-8;",
+			dataType : 'json',
+			success : function(data){
+				alert("Data: "+data.id+"님 login ok Status : success");
+			},
+			error : function(request, status, error){
+				alert("code = "+request.status+" message = "+request.responseText+" error = "+error);
+			}
+		});
+	});//버튼 클릭 이벤트
+	</script>
+</html>
+```
+
+
+
