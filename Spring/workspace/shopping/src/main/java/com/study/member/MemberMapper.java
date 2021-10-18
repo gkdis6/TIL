@@ -24,5 +24,6 @@ public interface MemberMapper {
 	int total(Map map);
 
 	List<MemberDTO> list(Map map);
-
+	
+	MemberDTO mypage(String id);
 }

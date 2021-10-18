@@ -74,7 +74,7 @@
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">community <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="${root}/contents/mypage">Mypage</a></li>
+							<li><a href="${root}/member/mypage">Mypage</a></li>
 							<li><a href="${root}/review/list">Review</a></li>
 							<li><a href="#">Notice</a></li>
 							<li><a href="#">Q&A</a></li>

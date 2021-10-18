@@ -44,15 +44,19 @@
  <definition name="/member/read" extends="main"> 
     <put-attribute name="title" value="회원정보" ></put-attribute> 
     <put-attribute name="body" value="/WEB-INF/views/member/read.jsp" /> 
-</definition>   
+ </definition>   
     
  <definition name="/member/updateFile" extends="main"> 
     <put-attribute name="title" value="사진수정" ></put-attribute> 
     <put-attribute name="body" value="/WEB-INF/views/member/updateFileForm.jsp" /> 
-</definition>  
+ </definition>  
 
-<definition name="/member/list" extends="main"> 
+ <definition name="/member/list" extends="main"> 
     <put-attribute name="title" value="회원목록" ></put-attribute> 
     <put-attribute name="body" value="/WEB-INF/views/member/list.jsp" /> 
-</definition> 
+ </definition>
+ <definition name="/member/mypage" extends="main"> 
+    <put-attribute name="title" value="나의페이지" ></put-attribute> 
+    <put-attribute name="body" value="/WEB-INF/views/member/mypage.jsp" /> 
+ </definition>  
 </tiles-definitions>

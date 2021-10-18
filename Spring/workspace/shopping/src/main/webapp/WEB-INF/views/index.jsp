@@ -16,7 +16,7 @@ img {
 
 	<div class="container">
 		<p>
-			<a href="./content/list">SHOP NOW</a>
+			<a href="./contents/mainlist/1" >SHOP NOW</a>
 		</p>
 		<img src="./images/jeans.jpg" alt="Jeans">
 

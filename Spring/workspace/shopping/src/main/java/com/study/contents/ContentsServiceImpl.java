@@ -41,9 +41,9 @@ public class ContentsServiceImpl implements ContentsService {
   }
 
 	@Override
-	public ContentsDTO read(int contentsno) {
+	public ContentsDTO detail(int contentsno) {
 		// TODO Auto-generated method stub
-		return mapper.read(contentsno);
+		return mapper.detail(contentsno);
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ List<ContentsDTO> list(Map map);
  
 int updateFile(Map map);
 
-ContentsDTO read(int contentsno);
+ContentsDTO detail(int contentsno);
 
 List<Map> getCategory();
 

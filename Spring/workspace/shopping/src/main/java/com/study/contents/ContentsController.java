@@ -121,11 +121,22 @@ public class ContentsController {
 	@GetMapping("/contents/update/{contentsno}")
 	public String update(@PathVariable("contentsno") int contentsno, Model model) {
 
-		ContentsDTO dto = service.read(contentsno);
+		ContentsDTO dto = service.detail(contentsno);
 
 		model.addAttribute("dto", dto);
 
 		return "/contents/update";
+
+	}
+	
+	@GetMapping("/contents/detail/{contentsno}")
+	public String detail(@PathVariable("contentsno") int contentsno, Model model) {
+
+		ContentsDTO dto = service.detail(contentsno);
+
+		model.addAttribute("dto", dto);
+
+		return "/contents/detail";
 
 	}
 

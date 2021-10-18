@@ -309,4 +309,20 @@ public class MemberController {
 
 		return map;
 	}
+	
+	@GetMapping("/member/mypage")
+	public String mypage(HttpSession session, Model model) {
+	   String id = (String)session.getAttribute("id");
+	 
+	  if(id==null) {
+	       return "redirect: ./login/";
+	  }else {
+	  
+	       MemberDTO dto = service.mypage(id);
+	      
+	       model.addAttribute("dto", dto);
+	      
+	   return "/member/mypage";
+	  }
+	}
 }

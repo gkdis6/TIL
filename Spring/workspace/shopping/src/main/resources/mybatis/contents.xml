@@ -70,8 +70,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         sysdate, #{stock})
         </insert>
         
-        <select id="read" parameterType="int" resultType="com.study.contents.ContentsDTO">
-        select * from where contentsno = #{contentsno}
+        <select id="detail" parameterType="int" resultType="com.study.contents.ContentsDTO">
+        select contentsno, cateno, pname, price, filename, stock, detail 
+        from contents where contentsno = #{contentsno}
         </select>
         
         <select id="getCategory" resultType="Map">
@@ -104,4 +105,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        )where r >= #{sno} and r <= #{eno}
 	    ]]> 
 	    </select>
+	    
 </mapper>

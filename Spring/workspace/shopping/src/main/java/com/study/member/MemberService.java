@@ -25,4 +25,5 @@ public interface MemberService {
 
 	List<MemberDTO> list(Map map);
 
+	MemberDTO mypage(String id);
 }

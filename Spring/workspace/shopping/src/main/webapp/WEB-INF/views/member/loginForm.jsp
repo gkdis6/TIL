@@ -11,7 +11,7 @@
 
 <h1 class="col-sm-offset-2 col-sm-10">로그인</h1>
   <form class="form-horizontal" 
-        action="login"
+        action="/member/login"
         method="post">
     <input type="hidden" name="rurl" value="${param.rurl}">    
     <input type="hidden" name="bbsno" value="${param.bbsno}">    
