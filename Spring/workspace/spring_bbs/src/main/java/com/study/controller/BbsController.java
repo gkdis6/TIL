@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ import com.study.model.BbsDTO;
 import com.study.model.BbsMapper;
 import com.study.model.ReplyMapper;
 import com.study.utility.Utility;
+import com.study.model.BbsService;
 
 @Controller
 public class BbsController {
@@ -38,6 +40,10 @@ public class BbsController {
 
 	@Autowired
     private ReplyMapper rmapper;
+	
+	@Autowired
+	@Qualifier("com.study.model.BbsServiceImpl")
+	private BbsService service;
 	
 	@GetMapping("/")
 	public String home(Locale locale, Model model) {
@@ -261,7 +267,7 @@ public class BbsController {
 		if (cnt > 0) {
 
 			try {
-				mapper.delete(bbsno);
+				service.delete(bbsno);
 				redirect.addAttribute("col", request.getParameter("col"));
 				redirect.addAttribute("word", request.getParameter("word"));
 				redirect.addAttribute("nowPage", request.getParameter("nowPage"));

@@ -49,4 +49,9 @@ delete from REPLY
 where rnum = #{rnum}
 </delete>
 
+<delete id="bdelete" parameterType="int">
+DELETE FROM reply
+WHERE bbsno = #{bbsno}
+</delete>
+
 </mapper>
