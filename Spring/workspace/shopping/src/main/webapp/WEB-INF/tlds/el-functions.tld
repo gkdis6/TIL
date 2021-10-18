@@ -32,4 +32,14 @@
         </function-signature> 
     </function> 
       
+    <function>  
+        <description>new img</description> 
+        <name>newImg</name>  
+        <function-class>                   
+            com.study.utility.Utility 
+        </function-class> 
+        <function-signature>    
+            boolean compareDay( java.lang.String )
+        </function-signature> 
+    </function> 
 </taglib> 
