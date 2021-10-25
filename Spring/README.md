@@ -226,6 +226,13 @@ frontend
 	});//버튼 클릭 이벤트
 	</script>
 </html>
+  
+  var cal=function(value){
+	console.log("값변경 : "+ value);
+	$("#totall").text(value*${dto.price});
+	$("#total").val(value*${dto.price});
+	
+  }
 ```
 
 
