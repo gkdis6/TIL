@@ -39,3 +39,14 @@ docker container 내에 실행할 명령어를 실행
 ## docker host와 container 연동
 
 docker run {--name container name} -p {host port:port} -v {host 절대경로}:/usr/local/apache2/htdocs/ {image name}
+
+
+
+## EC2 와 연결
+
+1. ```cd .ssh```
+2. ```ssh oneline```
+
+우분투 환경인 EC2로 이동
+
+config 파일을 열어 ec2 설정을 열어볼 수 있다.
