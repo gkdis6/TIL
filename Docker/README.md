@@ -50,3 +50,13 @@ docker run {--name container name} -p {host port:port} -v {host 절대경로}:/u
 우분투 환경인 EC2로 이동
 
 config 파일을 열어 ec2 설정을 열어볼 수 있다.
+
+
+
+## transfer .war file
+
+1. workspace 내로 들어간다.
+2. ```./gradlew bootWar```
+3. ./build/libs 경로의 .war 파일을 실행
+4. ```java -jar .war file이름```
+5. spring 실행되는지 확인
