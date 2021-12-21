@@ -1,5 +1,6 @@
 package com.sy.asmr
 
+import android.media.MediaPlayer
 import android.os.*
 import android.view.LayoutInflater
 import android.view.View
@@ -25,17 +26,18 @@ class Fragment1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("a h:mm:ss")
-        val formatted = current.format(formatter)
-        binding.textTime.text = formatted
+//        val current = LocalDateTime.now()
+//        val formatter = DateTimeFormatter.ofPattern("a h:mm:ss")
+//        val formatted = current.format(formatter)
+//        binding.textTime.text = formatted
+//
+//        thread(start = true) {
+//            while (true) {
+//                Thread.sleep(1000)
+//                handler?.sendEmptyMessage(0)
+//            }
+//        }
 
-        thread(start = true) {
-            while (true) {
-                Thread.sleep(1000)
-                handler?.sendEmptyMessage(0)
-            }
-        }
 
 
     }

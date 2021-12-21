@@ -1,5 +1,6 @@
 package com.sy.asmr
 
+import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,7 @@ class Holder(val binding: RecyclerViewItemBinding): RecyclerView.ViewHolder(bind
     fun setItem(item: Items){
         binding.button1.text = "${item.title}"
         binding.button2.text = "${item.ipsum}"
+
     }
     init{
         binding.button1.setOnClickListener {
