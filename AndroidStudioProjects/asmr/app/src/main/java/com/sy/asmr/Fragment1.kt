@@ -22,10 +22,10 @@ class Fragment1 : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
 //        val current = LocalDateTime.now()
 //        val formatter = DateTimeFormatter.ofPattern("a h:mm:ss")
 //        val formatted = current.format(formatter)
@@ -37,18 +37,18 @@ class Fragment1 : Fragment() {
 //                handler?.sendEmptyMessage(0)
 //            }
 //        }
+//
+//
+//
+//    }
 
-
-
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    val handler = object : Handler(Looper.getMainLooper()) {
-        override fun handleMessage(msg: Message) {
-            val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("a h:mm:ss")
-            val formatted = current.format(formatter)
-            binding.textTime.text = formatted
-        }
-    }
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    val handler = object : Handler(Looper.getMainLooper()) {
+//        override fun handleMessage(msg: Message) {
+//            val current = LocalDateTime.now()
+//            val formatter = DateTimeFormatter.ofPattern("a h:mm:ss")
+//            val formatted = current.format(formatter)
+//            binding.textTime.text = formatted
+//        }
+//    }
 }

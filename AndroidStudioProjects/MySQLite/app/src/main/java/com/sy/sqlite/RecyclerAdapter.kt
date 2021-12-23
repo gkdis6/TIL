@@ -16,6 +16,9 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.Holder>() {
                 listData.remove(mMemo)
                 notifyDataSetChanged()
             }
+            binding.buttonUpdate.setOnClickListener{
+
+            }
         }
 
         fun setMemo(memo: Memo){

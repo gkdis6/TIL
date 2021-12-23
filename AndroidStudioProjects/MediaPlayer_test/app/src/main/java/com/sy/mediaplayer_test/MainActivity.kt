@@ -9,7 +9,7 @@ import android.widget.SeekBar
 import com.sy.mediaplayer_test.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var wowh: MediaPlayer
+    private lateinit var mp: MediaPlayer
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +30,13 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
-        wowh = MediaPlayer.create(this, R.raw.beat)
+        mp = MediaPlayer.create(this, R.raw.beat)
         binding.buttonPlay.setOnClickListener {
-            wowh.start()
-            wowh.isLooping = true
+            mp.start()
+            mp.isLooping = true
         }
         binding.buttonPause.setOnClickListener {
-            wowh.pause()
+            mp.pause()
         }
 
     }
