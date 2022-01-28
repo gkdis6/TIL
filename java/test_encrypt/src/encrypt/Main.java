@@ -6,39 +6,38 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main{
-	static int[][] pays, cost;
-	static int finish;
-	static int red = 0;
-	static int green = 1;
-	static int blue = 2;
-    public static void main(String[] args) throws IOException{
+	static Integer[][] dp;
+	static int n, k;
+	static int max = Integer.MIN_VALUE;
+	static int[][] arr;
+	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
-		finish = n;
-		pays = new int[n][3];
-		cost = new int[n][3];
+		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		n = Integer.parseInt(st.nextToken());
+		k = Integer.parseInt(st.nextToken());
+		arr = new int[n][2];
+		dp = new Integer[n][k+1];
+		
 		for(int i = 0; i<n; i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			pays[i][0] = Integer.parseInt(st.nextToken());
-			pays[i][1] = Integer.parseInt(st.nextToken());
-			pays[i][2] = Integer.parseInt(st.nextToken());
+			st = new StringTokenizer(br.readLine());
+			arr[i][0] = Integer.parseInt(st.nextToken());
+			arr[i][1] = Integer.parseInt(st.nextToken());
 		}
-		cost[0][red] = pays[0][red];
-		cost[0][green] = pays[0][green];
-		cost[0][blue] = pays[0][blue];
+		System.out.println(dfs(n-1, k));
+	}
+	
+	static int dfs(int a, int w) {
+		if(a<0) return 0;
+		if(dp[a][w] == null) {
+			if(arr[a][0] > w) {
+				dp[a][w] = dfs(a-1, w);
+			}else if(arr[a][0] <= w) {
+				dp[a][w] = Math.max(dfs(a-1, w), dfs(a-1, w - arr[a][0]) + arr[a][1]);
+			}
+		}
 		
-		dfs(1);
-		
-		System.out.println(Math.min(cost[n-1][0], Math.min(cost[n-1][1], cost[n-1][2])));
-    }
-    
-    static void dfs(int depth) {
-    	if(depth == finish) {
-    		return;
-    	}
-    	for(int i = 0; i<3; i++) {
-    		cost[depth][i] = pays[depth][i] + Math.min(cost[depth-1][(i+1)%3], cost[depth-1][(i+2)%3]); 
-    	}
-    	dfs(depth+1);
-    }
+		return dp[a][w];
+	}
 }
