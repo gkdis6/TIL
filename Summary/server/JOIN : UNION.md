@@ -2,7 +2,9 @@
 
 INNER JOIN 의 경우 교집합. O(n)
 
-OUTER JOIN 의 경우 합집합. O(n^2)
+OUTER JOIN 의 경우 아래와 같음. O(n^2)
+
+![img](JOIN%20:%20UNION.assets/img.png)
 
 # UNION vs UNION ALL
 
