@@ -17,25 +17,40 @@
 
     <EditText
         android:id="@+id/editMemo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="239dp"
+        android:layout_height="47dp"
         android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
+        android:layout_marginEnd="22dp"
         android:layout_marginBottom="5dp"
         android:ems="10"
         android:hint="내용입력"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:text="저장"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
         app:layout_constraintStart_toEndOf="@+id/editMemo" />
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="37dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="4dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+        app:layout_constraintStart_toEndOf="@+id/editMemo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

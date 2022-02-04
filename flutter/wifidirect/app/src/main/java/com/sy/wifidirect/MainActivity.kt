@@ -3,12 +3,10 @@ package com.sy.wifidirect
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
-import android.net.wifi.WpsInfo
 import android.net.wifi.p2p.WifiP2pConfig
 import android.net.wifi.p2p.WifiP2pDevice
 import android.net.wifi.p2p.WifiP2pManager
@@ -20,10 +18,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import com.sy.wifidirect.databinding.ActivityMainBinding
+import com.example.wifidirectexample.DeviceDetailFragment
+import com.example.wifidirectexample.DeviceListFragment
 
-class MainActivity : AppCompatActivity() {
-    val binding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
+class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener, DeviceListFragment.DeviceActionListener {
     val helper: RoomHelper? = null
 
     private var manager: WifiP2pManager? = null
@@ -35,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
         initIntentFilter()
         checkIfWifiDirectSupported()
         checkLocationPermission()
@@ -261,6 +259,10 @@ class MainActivity : AppCompatActivity() {
                 })
             }
         }
+    }
+
+    fun setIsWifiP2pEnabled(isWifiP2pEnabled: Boolean) {
+        this.isWifiP2pEnabled = isWifiP2pEnabled
     }
 
     companion object {

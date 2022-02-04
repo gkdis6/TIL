@@ -1,4 +1,4 @@
-package com.example.wifidirectexample
+package com.sy.wifidirect
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -12,6 +12,8 @@ import android.net.wifi.p2p.WifiP2pManager.PeerListListener
 import android.os.Parcelable
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import com.example.wifidirectexample.DeviceDetailFragment
+import com.example.wifidirectexample.DeviceListFragment
 
 class WifiDirectBroadcasterReceiver(
     private val manager: WifiP2pManager?, private val channel: WifiP2pManager.Channel?,

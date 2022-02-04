@@ -1,4 +1,4 @@
-package com.example.wifidirectexample
+package com.sy.wifidirect
 
 import java.net.Inet4Address
 import java.net.InetAddress

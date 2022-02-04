@@ -1,6 +1,5 @@
 package com.sy.wifi_room
 
-import android.net.wifi.WifiManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,7 +7,7 @@ import androidx.room.Room
 import com.sy.wifi_room.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    val binding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
+    private val binding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
     var helper: RoomHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +27,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonSave.setOnClickListener {
             if(binding.editMemo.text.toString().isNotEmpty()){
-                val memo = RoomMemo(binding.editMemo.text.toString(), System.currentTimeMillis())
+                val memo = RoomMemo(binding.editMemo.text.toString(), Integer.parseInt(binding.editTextNumber.text.toString()), System.currentTimeMillis())
                 helper?.roomMemoDao()?.insert(memo)
                 adapter.listData.clear()
                 adapter.listData.addAll(helper?.roomMemoDao()?.getAll()?: listOf())
 
                 adapter.notifyDataSetChanged()
                 binding.editMemo.setText("")
+                binding.editTextNumber.setText("");
             }
         }
 

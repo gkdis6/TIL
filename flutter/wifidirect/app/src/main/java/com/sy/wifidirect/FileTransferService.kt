@@ -1,9 +1,10 @@
-package com.example.wifidirectexample
+package com.sy.wifidirect
 
 import android.app.IntentService
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import com.example.wifidirectexample.DeviceDetailFragment
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.InputStream

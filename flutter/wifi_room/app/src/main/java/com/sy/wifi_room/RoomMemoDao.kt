@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.sy.wifi_room.RoomMemo
 
 //Data Access Object. DML쿼리를 실행하는 메서드의 모음
 @Dao
@@ -18,6 +17,9 @@ interface RoomMemoDao {
 
     @Delete
     fun delete(memo: RoomMemo)
+
+    @Query("UPDATE room_memo set quantity = :quantity WHERE no = :no")
+    fun update(quantity: Int?, no: Long?)
 }
 
 

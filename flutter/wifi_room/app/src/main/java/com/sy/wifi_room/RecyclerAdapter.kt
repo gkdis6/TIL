@@ -3,8 +3,6 @@ package com.sy.wifi_room
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sy.wifi_room.RoomHelper
-import com.sy.wifi_room.RoomMemo
 import com.sy.wifi_room.databinding.ItemRecyclerBinding
 import java.text.SimpleDateFormat
 
@@ -18,12 +16,19 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.Holder>() {
                 listData.remove(mRoomMemo)
                 notifyDataSetChanged()
             }
+            binding.buttonOrder.setOnClickListener {
+                helper?.roomMemoDao()?.update(mRoomMemo!!.quantity!! -1, mRoomMemo!!.no)
+                listData.clear()
+                listData.addAll(helper?.roomMemoDao()?.getAll()?: listOf())
+                notifyDataSetChanged()
+            }
         }
 
         fun setMemo(memo: RoomMemo){
             this.mRoomMemo = memo
             binding.textNo.text = "${memo.no}"
             binding.textContent.text = memo.content
+            binding.textQuantity.text = memo.quantity.toString()
             val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
             binding.textDatetime.text = "${sdf.format(memo.datetime)}"
         }

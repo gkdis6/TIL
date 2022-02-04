@@ -16,6 +16,8 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.ListFragment
+import com.sy.wifidirect.MainActivity
+import com.sy.wifidirect.R
 import java.util.*
 
 class DeviceListFragment : ListFragment(), PeerListListener {

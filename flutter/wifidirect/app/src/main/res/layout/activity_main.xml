@@ -9,15 +9,16 @@
         android:id="@+id/linearLayout1"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <fragment
-            class="com.example.wifidirectexample.DeviceListFragment"
             android:id="@+id/frag_list"
+            class="com.sy.wifidirect.DeviceListFragment"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/phone_list_height">
+            android:layout_height="200dp">
             <!-- Preview: layout=@layout/row_devices -->
         </fragment>
         <fragment
-            class="com.example.wifidirectexample.DeviceDetailFragment"
+            class="com.sy.wifidirect.DeviceDetailFragment"
             android:id="@+id/frag_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

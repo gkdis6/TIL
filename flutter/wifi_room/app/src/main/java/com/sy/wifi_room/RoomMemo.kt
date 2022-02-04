@@ -13,11 +13,15 @@ class RoomMemo {
     @ColumnInfo
     var content: String = ""
 
+    @ColumnInfo
+    var quantity: Int? =null
+
     @ColumnInfo(name = "date")
     var datetime: Long = 0
 
-    constructor(content:String, datetime: Long){
+    constructor(content:String, quantity: Int, datetime: Long){
         this.content = content
+        this.quantity = quantity
         this.datetime = datetime
     }
 }

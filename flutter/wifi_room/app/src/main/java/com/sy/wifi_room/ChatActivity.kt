@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.sy.wifi_room.databinding.ActivityChatBinding
+import com.sy.wifi_room.databinding.ActivityMainBinding
 import java.io.*
 import java.net.InetAddress
 import java.net.ServerSocket
@@ -20,20 +22,22 @@ class ChatActivity : AppCompatActivity() {
     var updateConversationHandler: Handler? = null
     var serverThread: Thread? = null
     private var socket: Socket? = null
-    var receivedText: TextView? = null
-    var yourMessage: EditText? = null
-    var send: Button? = null
+//    var receivedText: TextView? = null
+//    var yourMessage: EditText? = null
+//    var send: Button? = null
     var owner = false
+
+    private val binding by lazy{ ActivityChatBinding.inflate(layoutInflater)}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
+        setContentView(binding.root)
         val intent = intent
         owner = intent.getBooleanExtra("Owner?", false)
         SERVER_IP = intent.getStringExtra("Owner Address")
-        receivedText = findViewById<View>(R.id.text_incoming) as TextView
-        yourMessage = findViewById<View>(R.id.text_send) as EditText
-        send = findViewById<View>(R.id.btn_send) as Button
-        updateConversationHandler = Handler()
+//        receivedText = findViewById<View>(R.id.text_incoming) as TextView
+//        yourMessage = findViewById<View>(R.id.text_send) as EditText
+//        send = findViewById<View>(R.id.btn_send) as Button
+//        updateConversationHandler = Handler()
 
         // If we're the owner start a server, else connect to the server
         if (owner) {
@@ -44,33 +48,25 @@ class ChatActivity : AppCompatActivity() {
         }
 
         // Sends the text to the server
-        send.setOnClickListener(object : OnClickListener() {
-            fun onClick(view: View?) {
-                try {
-                    val str = yourMessage!!.text.toString()
-                    val out = PrintWriter(
-                        BufferedWriter(
-                            OutputStreamWriter(
-                                socket.getOutputStream()
-                            )
-                        ), true
-                    )
-                    out.println(str)
-                } catch (e: UnknownHostException) {
-                    e.printStackTrace()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+        binding.btnSend.setOnClickListener {
+            if(binding.textSend.text.isNotEmpty()) {
+                val str = binding.textSend!!.text
+                val out = PrintWriter(
+                    BufferedWriter(
+                        OutputStreamWriter(
+                            socket?.getOutputStream()
+                        )
+                    ), true
+                )
+                out.println(str)
             }
-        })
+        }
     }
 
     override fun onStop() {
         super.onStop()
         try {
-            serverSocket.close()
+            serverSocket?.close()
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -89,8 +85,8 @@ class ChatActivity : AppCompatActivity() {
             while (!Thread.currentThread().isInterrupted) {
                 try {
                     // Start listening for messages
-                    socket = serverSocket.accept()
-                    val commThread: CommunicationThread = CommunicationThread(socket)
+                    socket = serverSocket?.accept()
+                    val commThread: CommunicationThread = CommunicationThread(socket!!)
                     Thread(commThread).start()
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -106,8 +102,8 @@ class ChatActivity : AppCompatActivity() {
         override fun run() {
             while (!Thread.currentThread().isInterrupted) {
                 try {
-                    val read: String = input.readLine()
-                    updateConversationHandler.post(UpdateUIThread(read))
+                    val read: String = input!!.readLine()
+                    updateConversationHandler!!.post(UpdateUIThread(read))
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
@@ -129,8 +125,8 @@ class ChatActivity : AppCompatActivity() {
     internal inner class UpdateUIThread(private val msg: String) : Runnable {
         // Print message on screen
         override fun run() {
-            receivedText!!.text = """
-                 ${receivedText!!.text}Gelen Mesaj: $msg
+            binding.textIncoming!!.text = """
+                 ${binding.textIncoming!!.text}Gelen Mesaj: $msg
                  
                  """.trimIndent()
         }

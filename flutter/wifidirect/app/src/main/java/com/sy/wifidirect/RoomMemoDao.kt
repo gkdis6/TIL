@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.sy.wifi_room.RoomMemo
+import com.sy.wifidirect.RoomMemo
 
 //Data Access Object. DML쿼리를 실행하는 메서드의 모음
 @Dao

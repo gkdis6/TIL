@@ -21,6 +21,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.sy.wifidirect.FileTransferService
+import com.sy.wifidirect.MainActivity
+import com.sy.wifidirect.R
+import com.sy.wifidirect.Utils
 import java.io.*
 import java.net.InetSocketAddress
 import java.net.ServerSocket
