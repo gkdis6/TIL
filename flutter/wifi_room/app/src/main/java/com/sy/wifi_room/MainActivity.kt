@@ -10,6 +10,12 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
     var helper: RoomHelper? = null
 
+
+    companion object {
+        const val TAG = "wifi_room"
+        private const val PERMISSIONS_REQUEST_CODE_ACCESS_FINE_LOCATION = 1001
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -41,4 +47,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">wifi_room</string>
+    <string name="enable_p2p_button">p2p on/off</string>
+    <string name="discover_peers_button">discover</string>
 </resources>
