@@ -31,14 +31,14 @@ Google은 SQLite 대신 ROOM의 사용을 권고한다.
 ## ROOM 구성요소
 
 - Database
-  데이터베이스의 holder를 구성하며 지속적인 관계형 데이터의 기본 연결을 위한 access point 역할
+  데이터베이스의 holder를 구성하며 지속적인 관계형 데이터의 기본 연결을 위한 **access point** 역할
   	`@Database` 
   		RoomDatabse를 extends 하는 abstract class여야 함
   		Annotation 내에 entities를 포함해야 함
   		클래스 내부에 인수가 0개인 @Dao annotation이 지정된 클래스를 반환하는 abstract class를 포함 `public abstract dao UserDao();`
 
 - Entity
-  Entity file은 class의 변수들이 column이 되어 database의 table이 된다.
+  Entity file은 class의 변수들이 column이 되어 database의 **table**이 된다.
 
   ​	`@Entity(tableName = StudentEntry.TABLE_NAME)` Table 이름을 선언(기본적으로 entity class 이름을 database table 이름으로 인식)
   ​	`@PrimaryKey`
@@ -49,7 +49,7 @@ Google은 SQLite 대신 ROOM의 사용을 권고한다.
   ​		`private int grade;`
 
 - DAO(Data Access Objects)
-  DAO는 database에 접근할 수 있는 메소드를 포함하며 SQL 쿼리를 지정할 수 있다.
+  DAO는 **database에 접근할 수 있는 메소드**를 포함하며 SQL 쿼리를 지정할 수 있다.
 
   ​	`@Insert`
   ​		@Entity로 정의된 class만 인자로 받거나, 그 class의 collection 또는 array만 인자로 받을 수 있다.
@@ -64,3 +64,50 @@ Google은 SQLite 대신 ROOM의 사용을 권고한다.
   ​	`@Query`
   ​		DB를 조회할 수 있다.
   ​		Complie time에 return 되는 object의 field와 sql결과로 나오는 column의 이름이 맞는지 확인하여 일부가 match되면 warning, match 되는 게 없다면 error를 보냄
+  
+  위의 Annotaion 뒤에 (onConflict = OnConflictStrategy.REPLACE) 와 같이 충돌 시의 처리 방법을 정할 수 있고
+  
+  1. REPLACE
+  2. ROLLBACK
+  3. ABORT
+  4. FAIL
+  5. IGNORE
+  
+  이 있다.
+  
+  ## VS MySQL
+  
+  크게 3가지 방법이 있는데
+  
+  1. **Insert ignore into ** person values (null, 'james', 'seoul');
+     중복된 키가 있을 경우 무시된다.
+  
+  2. **Replace into** person values (null, 'james', 'seoul');
+     중복된 키가 있을 경우 기존 레코드가 삭제되고 신규 레코드가 삽입된다. (2 rows affected)
+  
+     ID나 No와 같은 auto increment 값이 있을 경우 새로운 key 값을 받게 되어 변경되게 됨
+  
+     | id   | name    | address |
+     | ---- | ------- | ------- |
+     | 4    | cynthia | seoul   |
+     | 5    | james   | seoul   |
+  
+     
+  
+  3. **Insert into ... on duplicate update**
+  
+     ```mysql
+     INSERT INTO person VALUES (NULL, 'James', 'Incheon')
+                ON DUPLICATE KEY UPDATE address = VALUES(address);
+     ```
+  
+     중복된 값이 있을 경우 필드의 값만을 update 할 수 있다.
+  
+     | id   | name    | address |
+     | ---- | ------- | ------- |
+     | 1    | James   | Incheon |
+     | 2    | cynthia | seoul   |
+  
+     
+  
+  
