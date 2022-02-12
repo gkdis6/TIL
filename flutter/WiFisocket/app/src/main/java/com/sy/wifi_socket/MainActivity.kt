@@ -60,10 +60,12 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION)
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION)
 
+        //WiFi P2p initialize
         if (!initP2p()) {
             finish()
         }
 
+        //권한 요청
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
             && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             )
         }
 
-
+        //Wifi P2p 연결 후 서버로부터 받은 ip주소로 소켓에 연결(Client에서 눌러야 하는 버튼)
         binding.buttonConnect.setOnClickListener {    //클라이언트 -> 서버 접속
             val config = WifiP2pConfig()
             becomeClient = true
@@ -83,6 +85,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             (MainActivity as DeviceListFragment.DeviceActionListener?)?.connect(config)
         }
 
+        //WiFi P2p의 연결을 끊는 버튼
         binding.buttonDisconnect.setOnClickListener {    //클라이언트 -> 서버 접속 끊기
             if(!socket.isClosed){
                 Disconnect().start()
@@ -91,6 +94,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             }
         }
 
+        //사용되지 않음
         binding.buttonSetserver.setOnClickListener{    //서버 포트 열기
             if(binding.etPort.text.isNotEmpty()) {
                 val cport = binding.etPort.text.toString().toInt()
@@ -110,6 +114,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             }
         }
 
+        //서버가 정상적으로 닫히지 않고있음
         binding.buttonCloseserver.setOnClickListener {    //서버 포트 닫기
             if(!server.isClosed){
                 CloseServer().start()
@@ -120,6 +125,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             }
         }
 
+        //discoverPeers 하는 버튼 WiFiDirectBroadcastReceiver의 intent필터를 통해 requestPeer로 연결됨
         binding.buttonDiscover.setOnClickListener {    //자기자신의 연결 정보(IP 주소)확인
             if(!isWifiP2pEnabled){
                 Toast.makeText(
@@ -144,6 +150,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             })
         }
 
+        //메세지를 보내는 버튼
         binding.buttonMsg.setOnClickListener {    //상대에게 메시지 전송
             if(socket.isClosed){
                 Toast.makeText(this@MainActivity, "연결이 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
@@ -154,6 +161,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             }
         }
 
+        //Thread로부터 서버나 소켓의 연결상태를 수신받는 핸들러
         mHandler = object : Handler(Looper.getMainLooper()){  //Thread들로부터 Handler를 통해 메시지를 수신
             override fun handleMessage(msg: Message) {
                 super.handleMessage(msg)
@@ -180,7 +188,9 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         }
     }
 
-
+    //server ip주소를 수신받은 후에 clinet가 server ip주소로 연결신청
+    //지정된 포트와 ip의 소켓이 열렸는지 Listen
+    //ClientSocket도 호출
     class Connect:Thread(){
 
         override fun run(){
@@ -211,6 +221,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         }
     }
 
+    //연결된 소켓으로부터 메세지가 수신되는지 listen하고 메세지가 수신되면 handler로 보내 toast해줌
     class ClientSocket:Thread(){
         override fun run() {
             try{
@@ -252,6 +263,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         }
     }
 
+    //지정된 포트로 소켓 연결 후 수신되는 메세지가 있는지 Listen
     class SetServer:Thread(){
 
         override fun run(){
