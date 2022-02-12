@@ -46,7 +46,7 @@ S3, ELB, CloudFront, Elastic Beanstalk
 
 ## 장점
 
-1. GUI를 제공
+1. ~~GUI를 제공~~
 2. 네임서버 자체 안정성이 높아짐
    Anycast network + 4개의 네임서버 + ddos로부터 안전 = 가용성 100% 제공
 3. 글로벌 서비스가 가능해진다.
