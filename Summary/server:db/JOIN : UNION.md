@@ -67,7 +67,7 @@ OUTER JOIN 의 경우 아래와 같음. O(n^2)
 | 볼빨간사춘기 | 여자가수 |
 
 select name from celebrity
-union
+**union**
 select name from female_singer
 
 | 이름         |
@@ -81,7 +81,7 @@ select name from female_singer
 | 이해리       |
 
 select name from celebrity
-union all
+**union all**
 select name from female_singer
 
 | 이름         |
