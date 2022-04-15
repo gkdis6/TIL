@@ -22,7 +22,7 @@ import java.net.*
 
 class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
 
-    companion object{
+    companion object {
         var socket = Socket()
         var server = ServerSocket()
         lateinit var writeSocket: DataOutputStream
@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         var mHandler = Handler()
         var closed = false
     }
-    val binding by lazy{ ActivityMainBinding.inflate(layoutInflater)}
+
+    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var isWifiP2pEnabled = false
     private val intentFilter = IntentFilter()
     private var channel: WifiP2pManager.Channel? = null
@@ -50,7 +51,8 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        cManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        cManager =
+            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         server.close()
         socket.close()
 
@@ -87,38 +89,42 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
 
         //WiFi P2p의 연결을 끊는 버튼
         binding.buttonDisconnect.setOnClickListener {    //클라이언트 -> 서버 접속 끊기
-            if(!socket.isClosed){
+            if (!socket.isClosed) {
                 Disconnect().start()
-            }else{
+            } else {
                 Toast.makeText(this@MainActivity, "서버와 연결이 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
         //사용되지 않음
-        binding.buttonSetserver.setOnClickListener{    //서버 포트 열기
-            if(binding.etPort.text.isNotEmpty()) {
+        binding.buttonSetserver.setOnClickListener {    //서버 포트 열기
+            if (binding.etPort.text.isNotEmpty()) {
                 val cport = binding.etPort.text.toString().toInt()
-                if(cport<0 || cport>65535){
-                    Toast.makeText(this@MainActivity, "PORT 번호는 0부터 65535까지만 가능합니다.", Toast.LENGTH_SHORT).show()
-                }else{
-                    if(server.isClosed) {
+                if (cport < 0 || cport > 65535) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "PORT 번호는 0부터 65535까지만 가능합니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    if (server.isClosed) {
                         port = cport
                         SetServer().start()
-                    }else{
+                    } else {
                         val tstr = port.toString() + "번 포트가 열려있습니다."
                         Toast.makeText(this@MainActivity, tstr, Toast.LENGTH_SHORT).show()
                     }
                 }
-            }else{
+            } else {
                 Toast.makeText(this@MainActivity, "PORT 번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
 
         //서버가 정상적으로 닫히지 않고있음
         binding.buttonCloseserver.setOnClickListener {    //서버 포트 닫기
-            if(!server.isClosed){
+            if (!server.isClosed) {
                 CloseServer().start()
-            }else{
+            } else {
                 mHandler.obtainMessage(17).apply {
                     sendToTarget()
                 }
@@ -127,13 +133,13 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
 
         //discoverPeers 하는 버튼 WiFiDirectBroadcastReceiver의 intent필터를 통해 requestPeer로 연결됨
         binding.buttonDiscover.setOnClickListener {    //자기자신의 연결 정보(IP 주소)확인
-            if(!isWifiP2pEnabled){
+            if (!isWifiP2pEnabled) {
                 Toast.makeText(
                     this@MainActivity, "P2P를 활성화시켜주세요",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            manager!!.discoverPeers(channel, object:WifiP2pManager.ActionListener{
+            manager!!.discoverPeers(channel, object : WifiP2pManager.ActionListener {
                 override fun onSuccess() {
                     Toast.makeText(
                         this@MainActivity, "탐색 시작",
@@ -152,9 +158,9 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
 
         //메세지를 보내는 버튼
         binding.buttonMsg.setOnClickListener {    //상대에게 메시지 전송
-            if(socket.isClosed){
+            if (socket.isClosed) {
                 Toast.makeText(this@MainActivity, "연결이 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
-            }else {
+            } else {
                 val mThread = SendMessage()
                 mThread.setMsg(binding.etMsg.text.toString())
                 mThread.start()
@@ -162,27 +168,55 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         }
 
         //Thread로부터 서버나 소켓의 연결상태를 수신받는 핸들러
-        mHandler = object : Handler(Looper.getMainLooper()){  //Thread들로부터 Handler를 통해 메시지를 수신
+        mHandler = object : Handler(Looper.getMainLooper()) {  //Thread들로부터 Handler를 통해 메시지를 수신
             override fun handleMessage(msg: Message) {
                 super.handleMessage(msg)
-                when(msg.what){
-                    1->Toast.makeText(this@MainActivity, "IP 주소가 잘못되었거나 서버의 포트가 개방되지 않았습니다.", Toast.LENGTH_SHORT).show()
-                    2->Toast.makeText(this@MainActivity, "서버 포트 "+port +"가 준비되었습니다.", Toast.LENGTH_SHORT).show()
-                    3->Toast.makeText(this@MainActivity, msg.obj.toString(), Toast.LENGTH_SHORT).show()
-                    4->Toast.makeText(this@MainActivity, "연결이 종료되었습니다.", Toast.LENGTH_SHORT).show()
-                    5->Toast.makeText(this@MainActivity, "이미 사용중인 포트입니다.", Toast.LENGTH_SHORT).show()
-                    6->Toast.makeText(this@MainActivity, "서버 준비에 실패하였습니다.", Toast.LENGTH_SHORT).show()
-                    7->Toast.makeText(this@MainActivity, "서버가 종료되었습니다.", Toast.LENGTH_SHORT).show()
-                    8->Toast.makeText(this@MainActivity, "서버가 정상적으로 닫히는데 실패하였습니다.", Toast.LENGTH_SHORT).show()
-                    9-> binding.textStatus.text = msg.obj as String
-                    11->Toast.makeText(this@MainActivity, "서버에 접속하였습니다.", Toast.LENGTH_SHORT).show()
-                    12->Toast.makeText(this@MainActivity, "메시지 전송에 실패하였습니다.", Toast.LENGTH_SHORT).show()
-                    13->Toast.makeText(this@MainActivity, "클라이언트와 연결되었습니다.",Toast.LENGTH_SHORT).show()
-                    14->Toast.makeText(this@MainActivity,"서버에서 응답이 없습니다.", Toast.LENGTH_SHORT).show()
-                    15->Toast.makeText(this@MainActivity, "서버와의 연결을 종료합니다.", Toast.LENGTH_SHORT).show()
-                    16->Toast.makeText(this@MainActivity, "클라이언트와의 연결을 종료합니다.", Toast.LENGTH_SHORT).show()
-                    17->Toast.makeText(this@MainActivity, "포트가 이미 닫혀있습니다.", Toast.LENGTH_SHORT).show()
-                    18->Toast.makeText(this@MainActivity, "서버와의 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show()
+                when (msg.what) {
+                    1 -> Toast.makeText(
+                        this@MainActivity,
+                        "IP 주소가 잘못되었거나 서버의 포트가 개방되지 않았습니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    2 -> Toast.makeText(
+                        this@MainActivity,
+                        "서버 포트 " + port + "가 준비되었습니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    3 -> Toast.makeText(this@MainActivity, msg.obj.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                    4 -> Toast.makeText(this@MainActivity, "연결이 종료되었습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    5 -> Toast.makeText(this@MainActivity, "이미 사용중인 포트입니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    6 -> Toast.makeText(this@MainActivity, "서버 준비에 실패하였습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    7 -> Toast.makeText(this@MainActivity, "서버가 종료되었습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    8 -> Toast.makeText(
+                        this@MainActivity,
+                        "서버가 정상적으로 닫히는데 실패하였습니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    9 -> binding.textStatus.text = msg.obj as String
+                    11 -> Toast.makeText(this@MainActivity, "서버에 접속하였습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    12 -> Toast.makeText(this@MainActivity, "메시지 전송에 실패하였습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    13 -> Toast.makeText(this@MainActivity, "클라이언트와 연결되었습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    14 -> Toast.makeText(this@MainActivity, "서버에서 응답이 없습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    15 -> Toast.makeText(this@MainActivity, "서버와의 연결을 종료합니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    16 -> Toast.makeText(
+                        this@MainActivity,
+                        "클라이언트와의 연결을 종료합니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    17 -> Toast.makeText(this@MainActivity, "포트가 이미 닫혀있습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    18 -> Toast.makeText(this@MainActivity, "서버와의 연결이 끊어졌습니다.", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
@@ -191,26 +225,26 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
     //server ip주소를 수신받은 후에 clinet가 server ip주소로 연결신청
     //지정된 포트와 ip의 소켓이 열렸는지 Listen
     //ClientSocket도 호출
-    class Connect:Thread(){
+    class Connect : Thread() {
 
-        override fun run(){
-            try{
+        override fun run() {
+            try {
                 socket = Socket(ip, port)
                 writeSocket = DataOutputStream(socket.getOutputStream())
                 readSocket = DataInputStream(socket.getInputStream())
                 val b = readSocket.read()
-                if(b==1){    //서버로부터 접속이 확인되었을 때
+                if (b == 1) {    //서버로부터 접속이 확인되었을 때
                     mHandler.obtainMessage(11).apply {
                         sendToTarget()
                     }
                     ClientSocket().start()
-                }else{    //서버 접속에 성공하였으나 서버가 응답을 하지 않았을 때
+                } else {    //서버 접속에 성공하였으나 서버가 응답을 하지 않았을 때
                     mHandler.obtainMessage(14).apply {
                         sendToTarget()
                     }
                     socket.close()
                 }
-            }catch(e:Exception){    //연결 실패
+            } catch (e: Exception) {    //연결 실패
                 val state = 1
                 mHandler.obtainMessage(state).apply {
                     sendToTarget()
@@ -222,12 +256,12 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
     }
 
     //연결된 소켓으로부터 메세지가 수신되는지 listen하고 메세지가 수신되면 handler로 보내 toast해줌
-    class ClientSocket:Thread(){
+    class ClientSocket : Thread() {
         override fun run() {
-            try{
+            try {
                 while (true) {
                     val ac = readSocket.read()
-                    if(ac == 2) {    //서버로부터 메시지 수신 명령을 받았을 때
+                    if (ac == 2) {    //서버로부터 메시지 수신 명령을 받았을 때
                         val bac = readSocket.readUTF()
                         val input = bac.toString()
                         val recvInput = input.trim()
@@ -236,7 +270,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
                         msg.what = 3
                         msg.obj = recvInput
                         mHandler.sendMessage(msg)
-                    }else if(ac == 10){    //서버로부터 접속 종료 명령을 받았을 때
+                    } else if (ac == 10) {    //서버로부터 접속 종료 명령을 받았을 때
                         mHandler.obtainMessage(18).apply {
                             sendToTarget()
                         }
@@ -244,7 +278,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
                         break
                     }
                 }
-            }catch(e:SocketException){    //소켓이 닫혔을 때
+            } catch (e: SocketException) {    //소켓이 닫혔을 때
                 mHandler.obtainMessage(15).apply {
                     sendToTarget()
                 }
@@ -252,28 +286,28 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         }
     }
 
-    class Disconnect:Thread(){
+    class Disconnect : Thread() {
         override fun run() {
-            try{
+            try {
                 writeSocket.write(10)    //서버에게 접속 종료 명령 전송
                 socket.close()
-            }catch(e:Exception){
+            } catch (e: Exception) {
 
             }
         }
     }
 
     //지정된 포트로 소켓 연결 후 수신되는 메세지가 있는지 Listen
-    class SetServer:Thread(){
+    class SetServer : Thread() {
 
-        override fun run(){
-            try{
+        override fun run() {
+            try {
                 server = ServerSocket(port)    //포트 개방
                 mHandler.obtainMessage(2, "").apply {
                     sendToTarget()
                 }
 
-                while(true) {
+                while (true) {
                     socket = server.accept()
                     writeSocket = DataOutputStream(socket.getOutputStream())
                     readSocket = DataInputStream(socket.getInputStream())
@@ -284,12 +318,12 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
                     }
                     while (true) {
                         val ac = readSocket.read()
-                        if(ac==10){    //클라이언트로부터 소켓 종료 명령 수신
+                        if (ac == 10) {    //클라이언트로부터 소켓 종료 명령 수신
                             mHandler.obtainMessage(16).apply {
                                 sendToTarget()
                             }
                             break
-                        }else if(ac == 2){    //클라이언트로부터 메시지 전송 명령 수신
+                        } else if (ac == 2) {    //클라이언트로부터 메시지 전송 명령 수신
                             val bac = readSocket.readUTF()
                             val input = bac.toString()
                             val recvInput = input.trim()
@@ -302,35 +336,34 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
                     }
                 }
 
-            }catch(e:BindException) {    //이미 개방된 포트를 개방하려 시도하였을때
+            } catch (e: BindException) {    //이미 개방된 포트를 개방하려 시도하였을때
                 mHandler.obtainMessage(5).apply {
                     sendToTarget()
                 }
-            }catch(e:SocketException){    //소켓이 닫혔을 때
+            } catch (e: SocketException) {    //소켓이 닫혔을 때
                 mHandler.obtainMessage(7).apply {
                     sendToTarget()
                 }
-            }
-            catch(e:Exception){
-                if(!closed) {
+            } catch (e: Exception) {
+                if (!closed) {
                     mHandler.obtainMessage(6).apply {
                         sendToTarget()
                     }
-                }else{
+                } else {
                     closed = false
                 }
             }
         }
     }
 
-    class CloseServer:Thread(){
-        override fun run(){
-            try{
+    class CloseServer : Thread() {
+        override fun run() {
+            try {
                 closed = true
                 writeSocket.write(10)    //클라이언트에게 서버가 종료되었음을 알림
                 socket.close()
                 server.close()
-            }catch(e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
                 mHandler.obtainMessage(8).apply {
                     sendToTarget()
@@ -339,18 +372,18 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         }
     }
 
-    class SendMessage:Thread(){
-        private lateinit var msg:String
+    class SendMessage : Thread() {
+        private lateinit var msg: String
 
-        fun setMsg(m:String){
+        fun setMsg(m: String) {
             msg = m
         }
 
         override fun run() {
-            try{
+            try {
                 writeSocket.writeInt(2)    //메시지 전송 명령 전송
                 writeSocket.writeUTF(msg)    //메시지 내용
-            }catch(e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
                 mHandler.obtainMessage(12).apply {
                     sendToTarget()
@@ -367,30 +400,30 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
         Log.d("Lifecycle", "onResume")
     }
 
-    override fun onPause(){
+    override fun onPause() {
         super.onPause()
         unregisterReceiver(receiver)
         Log.d("Lifecycle", "onPause")
     }
 
-    class ShowInfo:Thread(){
+    class ShowInfo : Thread() {
 
-        override fun run(){
-            lateinit var ip:String
+        override fun run() {
+            lateinit var ip: String
             var breakLoop = false
             val en = NetworkInterface.getNetworkInterfaces()
-            while(en.hasMoreElements()){
+            while (en.hasMoreElements()) {
                 val intf = en.nextElement()
                 val enumIpAddr = intf.inetAddresses
-                while(enumIpAddr.hasMoreElements()){
+                while (enumIpAddr.hasMoreElements()) {
                     val inetAddress = enumIpAddr.nextElement()
-                    if(!inetAddress.isLoopbackAddress && inetAddress is Inet4Address){
+                    if (!inetAddress.isLoopbackAddress && inetAddress is Inet4Address) {
                         ip = inetAddress.hostAddress.toString()
                         breakLoop = true
                         break
                     }
                 }
-                if(breakLoop){
+                if (breakLoop) {
                     break
                 }
             }
@@ -441,7 +474,7 @@ class MainActivity : AppCompatActivity(), WifiP2pManager.ChannelListener {
             return false
         }
         channel = manager!!.initialize(this, mainLooper, null)
-        channel?.also{ channel ->
+        channel?.also { channel ->
             receiver = WiFiDirectBroadcastReceiver(manager, channel, this)
         }
         if (channel == null) {
