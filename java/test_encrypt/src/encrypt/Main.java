@@ -1,32 +1,40 @@
 package encrypt;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
   public static void main(String[] args){
     Scanner in = new Scanner(System.in);
-    int input1 = Integer.parseInt(in.next());
+    int input1 = Integer.parseInt(in.next());q
     int[][] arr = new int[input1][5];
     int[] arr2 = new int[input1];
-    List list1 = null;
     
     for(int i = 0; i < input1; i++) {
-    	List list = null;
     	for(int j = 0; j<5; j++) {
     		arr[i][j] = Integer.parseInt(in.next());
-    		if(!list.contains(arr[i][j])) list.add(arr[i][j]);
-    	}
-    	for(int j = 0; j<5; j++) {
-    		if(!list.contains(arr[i][j])) list.add(arr[i][j]);
     	}
     }
     
-    for(int i = 0; i<5; i++) {
+    int max = 0;
+    int ptr = 0;
+    
+    for(int i = 0; i< input1; i++) {
+    	int cnt = 0;
     	for(int j = 0; j<input1; j++) {
-    		
+    		for(int k = 0; k<5; k++) {
+    			if(arr[i][k] == arr[j][k]) {
+    				cnt++;
+    				break;
+    			}
+    		}
+    	}
+    	if(cnt > max) {
+    		max = cnt;
+    		ptr = i;
     	}
     }
+    
+    System.out.print(ptr+1);
     
     
     return;
