@@ -24,6 +24,7 @@ exports.onRequest = function(res, method, pathname, params, cb){
 
 function register(method, pathname, params, cb){
     var response = {
+        key : params.key,
         errorcode: 0,
         errormessage: "success"
     };
@@ -45,5 +46,53 @@ function register(method, pathname, params, cb){
             cb(response);
         });
         connenction.end();
+    }
+}
+
+function inquiry(method, pathname, params, cb){
+    var response = {
+        key : params.key,
+        errorcode : 0,
+        errormessage : "success"
+    };
+
+    var connection = mysql.createConnection(conn);
+    connection.connect();
+    connection.query("select * from goods", (error, results, fields) => {
+        if(error || results.length == 0){
+            response.errorcode = 1;
+            response.errormessage = error ? error : "no data";
+        } else {
+            response.results = results;
+        }
+        cb(response);
+    });
+    connection.end();
+}
+
+function unregister(method, pathname, params, cb){
+    var response = {
+        key : params.key,
+        errorcode : 0,
+        errormessage : "success"
+    };
+
+    if(params.id == null){
+        response.errorcode = 1;
+        response.errormessage = error ? error : "Invalid Parameters";
+        cb(response);
+    }else{
+        var connection = mysql.createConnection(conn);
+        connection.connect();
+        connection.query("delete from goods where id = ?"
+        , [params.id]
+        , (error, results, fields) => {
+            if(error){
+                response.errorcode = 1;
+                response.errormessage = error;
+            }
+            cb(response);
+        });
+        connection.end();
     }
 }
