@@ -45,7 +45,7 @@ function register(method, pathname, params, cb){
             }
             cb(response);
         });
-        connenction.end();
+        connection.end();
     }
 }
 

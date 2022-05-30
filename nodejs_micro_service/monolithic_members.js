@@ -36,7 +36,7 @@ function register(method, pathname, params, cb){
     }else{
         var connection = mysql.createConnection(conn);
         connection.connect();
-        connection.query("insert into members(username, password) values('"+params.username + "', password('"+ params.password+"'));"
+        connection.query("insert into members(username, password) values('"+params.username + "', '"+ params.password+"');"
         , (error, results, fields) => {
             if(error){
                 response.errorcode = 1;
@@ -44,7 +44,7 @@ function register(method, pathname, params, cb){
             }
             cb(response);
         });
-        connenction.end();
+        connection.end();
     }
 }
 
@@ -62,7 +62,7 @@ function inquiry(method, pathname, params, cb){
     }else{
         var connection = mysql.createConnection(conn);
         connection.connect();
-        connection.query("select * from members where username = '"+params.username + "' and password = password('"+ params.password+"'));", (error, results, fields) => {
+        connection.query("select * from members where username = '"+params.username + "' and password = '"+ params.password+"';", (error, results, fields) => {
             if(error || results.length == 0){
                 response.errorcode = 1;
                 response.errormessage = error ? error : "invalid password";
