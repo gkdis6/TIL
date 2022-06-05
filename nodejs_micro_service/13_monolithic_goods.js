@@ -89,7 +89,7 @@ function unregister(method, pathname, params, cb){
 
     if(params.id == null){
         response.errorcode = 1;
-        response.errormessage = error ? error : "Invalid Parameters";
+        response.errormessage = "Invalid Parameters";
         cb(response);
     }else{
         var connection = mysql.createConnection(conn);

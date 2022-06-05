@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_micro_service",
+  "version": "1.0.0",
+  "description": "nodejs micro service test",
+  "main": "11_monolithic.js",
+  "dependencies": {
+    "elasticsearch": "^16.7.3",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node 11_monolithic.js"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "gkdis6",
+  "license": "ISC"
+}

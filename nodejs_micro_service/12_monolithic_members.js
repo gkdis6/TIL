@@ -57,7 +57,7 @@ function inquiry(method, pathname, params, cb){
 
     if(params.username == null || params.password == null){
         response.errorcode = 1;
-        response.errormessage = error ? error : "Invalid Parameters";
+        response.errormessage = "Invalid Parameters";
         cb(response);
     }else{
         var connection = mysql.createConnection(conn);
