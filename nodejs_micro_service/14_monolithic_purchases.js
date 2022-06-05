@@ -6,6 +6,12 @@ const conn = {
     database : 'monolithic'
 };
 
+const redis = require("redis").createClient();
+
+redis.on("error", function(err){
+    console.log("Redis Error " + err);
+});
+
 exports.onRequest = function(res, method, pathname, params, cb){
     switch(method){
         case "POST":
@@ -31,18 +37,27 @@ function register(method, pathname, params, cb){
         response.errormessage = "Invalid Parameters";
         cb(response);
     }else{
-        var connection = mysql.createConnection(conn);
-        connection.connect();
-        connection.query("insert into purchases(userid, goodsid) values(?, ?)"
-        ,[params.userid, params.goodsid]
-        , (error, results, fields) => {
-            if(error){
+        redis.get(params.goodsid, (err, result) =>{
+            if(err||result == null){
                 response.errorcode = 1;
-                response.errormessage = error;
+                response.errormessage = "Redis failure";
+                cb(response);
+                return;
             }
-            cb(response);
+
+            var connection = mysql.createConnection(conn);
+            connection.connect();
+            connection.query("insert into purchases(userid, goodsid) values(?, ?)"
+            ,[params.userid, params.goodsid]
+            , (error, results, fields) => {
+                if(error){
+                    response.errorcode = 1;
+                    response.errormessage = error;
+                }
+                cb(response);
+            });
+            connection.end();
         });
-        connection.end();
     }
 }
 

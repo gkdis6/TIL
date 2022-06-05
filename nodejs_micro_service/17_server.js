@@ -5,6 +5,7 @@ const tcpClient = require('./16_client.js');
 
 class tcpServer {
     constructor(name, port, urls){
+        this.logTcpClient = null;
         this.context = {
             port: port,
             name: name,
@@ -37,6 +38,7 @@ class tcpServer {
                     } else if (arr[n] == "" ) {
                         break;
                     }else {
+                        this.writeLog(arr[n]);
                         this.onRead(socket, JSON.parse(arr[n]));
                     }
                 }
@@ -80,7 +82,18 @@ class tcpServer {
                 isConnectedDistributor = true;
                 this.clientDistributor.write(packet); //접속완료 시 접속상태를 바꾸고 미리 만들어 놓은 패킷 전달
             }
-            , (options, data) => { onNoti(data); } //데이터 수신 시 함수의 파라미터로 전달받은 콜백 함수 호출
+            , (options, data) => { 
+                if(this.logTcpClient == null && this.context.name != 'logs'){
+                    for(var n in data.params){
+                        const ms = data.params[n];
+                        if(ms.name == 'logs'){
+                            this.connectToDistributor(ms.host, ms.port);
+                            break;
+                        }
+                    }
+                }
+                onNoti(data); 
+            } //데이터 수신 시 함수의 파라미터로 전달받은 콜백 함수 호출
             , (options) => { isConnectedDistributor = false; } //접속 종료 시
             , (options) => { isConnectedDistributor = false; } //에러 발생 시
         );
@@ -90,6 +103,31 @@ class tcpServer {
                 this.clientDistributor.connect();
             }
         }, 3000); //Distributor 아직 실행 전이거나 접속이 종료되면 3초 간격으로 재접속 시도
+    }
+    
+    connectToLog(host, port){
+        this.logTcpClient = new tcpClient(
+            host
+            , port
+            , (options) => {}
+            , (options) => { this.logTcpClient = null }
+            , (options) => { this.logTcpClient = null }
+        )
+        this.logTcpClient.connect();
+    }
+
+    writeLog(log){
+        if(this.logTcpClient){
+            const packet = {
+                uri: "/logs", 
+                method: "POST", 
+                key: 0, 
+                params: log
+            };
+            this.logTcpClient.write(packet);
+        }else{
+            console.log(log);
+        }
     }
 }
 

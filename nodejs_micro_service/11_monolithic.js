@@ -2,9 +2,9 @@ const http = require('http');
 const url = require('url');
 const querystring = require('querystring');
 
-const members = require('./monolithic_members.js');
-const goods = require('./monolithic_goods.js');
-const purchases = require('./monolithic_purchases.js');
+const members = require('./12_monolithic_members.js');
+const goods = require('./13_monolithic_goods.js');
+const purchases = require('./14_monolithic_purchases.js');
 //모듈 로드
 
 var server = http.createServer((req, res) => {
