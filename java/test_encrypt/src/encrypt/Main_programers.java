@@ -1,45 +1,34 @@
 package encrypt;
 
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Stack;
+import java.util.UUID;
 
-public class Main {
-  public static void main(String[] args){
-    Scanner in = new Scanner(System.in);
-    int input1 = Integer.parseInt(in.next());q
-    int[][] arr = new int[input1][5];
-    int[] arr2 = new int[input1];
-    
-    for(int i = 0; i < input1; i++) {
-    	for(int j = 0; j<5; j++) {
-    		arr[i][j] = Integer.parseInt(in.next());
-    	}
+public class Main_programers{
+	
+    public static void main(String[] args) throws IOException{
+    	int n = 6;
+    	int[] times = {3,1,2};
+    	String s = "ababcdcdababcdcd";
+    	System.out.println(problem(s));
+    	
+    	
+		return;
     }
     
-    int max = 0;
-    int ptr = 0;
-    
-    for(int i = 0; i< input1; i++) {
-    	int cnt = 0;
-    	for(int j = 0; j<input1; j++) {
-    		for(int k = 0; k<5; k++) {
-    			if(arr[i][k] == arr[j][k]) {
-    				cnt++;
-    				break;
-    			}
-    		}
+    public static int problem(String s) {
+    	char[] c = s.toCharArray();
+    	for(int i = 0; i<c.length-1; i++) {
+    		String cs = s.substring(0, i) + s.substring(i, i+2);
     	}
-    	if(cnt > max) {
-    		max = cnt;
-    		ptr = i;
-    	}
+    	return 1;
     }
     
-    System.out.print(ptr+1);
     
     
-    return;
-  }
 }
-
-//if(x == '0' && sb.length() == 0) continue;
-//else 
