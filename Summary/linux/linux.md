@@ -29,6 +29,7 @@ tail -n 100 | grep -A -B ''
 ```
 
 ```find
+#find 표현식
 name
 type(d : 디렉토리, f : 일반 파일, l : 심볼릭 링크)
 user(소유권)
