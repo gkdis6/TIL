@@ -1,0 +1,46 @@
+<script type="module">
+    import { createApp, ref } from 'vue'
+    
+    createApp({
+      setup() {
+        // 각 할 일에 고유한 ID 부여
+        let id = 0
+    
+        const newTodo = ref('')
+        const todos = ref([
+          { id: id++, text: 'HTML 배우기' },
+          { id: id++, text: 'JavaScript 배우기' },
+          { id: id++, text: 'Vue 배우기' }
+        ])
+    
+        function addTodo() {
+          // ...
+          newTodo.value = ''
+        }
+    
+        function removeTodo(todo) {
+          // ...
+        }
+    
+        return {
+          newTodo,
+          todos,
+          addTodo,
+          removeTodo
+        }
+      }
+    }).mount('#app')
+    </script>
+    
+    <div id="app">
+      <form @submit.prevent="addTodo">
+        <input v-model="newTodo" required placeholder="new todo">
+        <button>할 일 추가</button>
+      </form>
+      <ul>
+        <li v-for="todo in todos" :key="todo.id">
+          {{ todo.text }}
+          <button @click="removeTodo(todo)">X</button>
+        </li>
+      </ul>
+    </div>
