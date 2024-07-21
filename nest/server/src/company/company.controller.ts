@@ -17,18 +17,21 @@ export class CompanyController {
     return this.companyService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.companyService.findOne(+id);
+  @Get(':company_code')
+  findOne(@Param('company_code') company_code: string) {
+    return this.companyService.findOne(company_code);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
-    return this.companyService.update(+id, updateCompanyDto);
+  @Patch(':company_code')
+  update(
+    @Param('company_code') company_code: string,
+    @Body() updateCompanyDto: UpdateCompanyDto,
+  ) {
+    return this.companyService.update(company_code, updateCompanyDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.companyService.remove(+id);
+  @Delete(':company_code')
+  remove(@Param('company_code') company_code: string) {
+    return this.companyService.remove(company_code);
   }
 }
