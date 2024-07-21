@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
+import { Company } from './entities/company.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CompanyService {
+  constructor(
+    @InjectRepository(Company) private serverRepository: Repository<Company>,
+  ) {}
   create(createCompanyDto: CreateCompanyDto) {
-    return 'This action adds a new company';
+    return this.serverRepository.create(createCompanyDto);
   }
 
   findAll() {
-    return `This action returns all company`;
+    return this.serverRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} company`;
+  findOne(company_code: string) {
+    return this.serverRepository.findOne({ where: { company_code } });
   }
 
-  update(id: number, updateCompanyDto: UpdateCompanyDto) {
-    return `This action updates a #${id} company`;
+  update(company_code: string, updateCompanyDto: UpdateCompanyDto) {
+    return this.serverRepository.update({ company_code }, updateCompanyDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} company`;
+  remove(company_code: string) {
+    return this.serverRepository.delete({ company_code });
   }
 }
