@@ -1,34 +1,32 @@
-import { IsDate, IsEmpty, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsEmpty, IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
 export class CreateServerDto {
   @IsNotEmpty()
   @IsString()
-  name: string;
+  server_id: string;
+
+  @IsNotEmpty()
+  @IsString()
+  server_type: string;
+
+  @IsNotEmpty()
+  @IsString()
+  session_id: string;
 
   @IsNotEmpty()
   @IsString()
   @IsUrl()
-  domain: string;
+  server_domain: string;
 
   @IsEmpty()
   @IsString()
-  use_space: string;
+  nas_path: string;
 
   @IsEmpty()
   @IsString()
-  work_space: string;
+  ip: string;
 
   @IsEmpty()
   @IsString()
-  memo: string;
-
-  @IsEmpty()
-  @IsString()
-  credential_memo: string;
-
-  @IsDate()
-  ssl_due_date: Date;
-
-  @IsDate()
-  update_date: Date;
+  company_code: string;
 }
