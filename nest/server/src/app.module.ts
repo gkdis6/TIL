@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeormConfig } from './config/typeorm.config';
 import Configuration from './config/env/configuration';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { CompanyModule } from './company/company.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
       imports: undefined,
     }),
     ServerModule,
+    CompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

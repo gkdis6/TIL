@@ -14,7 +14,7 @@ export class TypeormConfig implements TypeOrmOptionsFactory {
       password: Configuration().database.password,
       database: Configuration().database.database, // TODO: 연결할 데이터베이스 이름
       synchronize: Configuration().database.syncronize, // TODO: 스키마 자동 동기화 (production에서는 false)
-      dropSchema: false, // TODO: 애플리케이션 실행시 기존 스키마 삭제 여부
+      dropSchema: Configuration().database.syncronize, // TODO: 애플리케이션 실행시 기존 스키마 삭제 여부
       keepConnectionAlive: true, // TODO: 애플리케이션 재시작 시 연결 유지
       logging: ['query', 'error', 'schema'], // TODO: 데이터베이스 쿼리 로깅 여부
       entities: [__dirname + '/../**/*.entity.{js,ts}'], //TODO: 중요! 엔티티 클래스 경로
