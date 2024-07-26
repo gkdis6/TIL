@@ -1,38 +1,36 @@
-import { IsDate, IsEmpty, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsDate, IsNotEmpty, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateCompanyDto {
   @IsNotEmpty()
   @IsString()
+  @ApiProperty()
+  // @ApiProperty({ example: '' })
   company_code: string;
 
   @IsNotEmpty()
   @IsString()
+  @ApiPropertyOptional()
+  // @ApiPropertyOptional({ example: '' })
   company_name: string;
 
-  @IsNotEmpty()
   @IsString()
-  @IsUrl()
-  company_domain: string;
-
-  @IsEmpty()
-  @IsString()
+  @ApiPropertyOptional()
   use_space: string;
 
-  @IsEmpty()
   @IsString()
+  @ApiPropertyOptional()
   work_space: string;
 
-  @IsEmpty()
   @IsString()
+  @ApiPropertyOptional()
   memo: string;
 
-  @IsEmpty()
   @IsString()
+  @ApiPropertyOptional()
   credential_memo: string;
 
   @IsDate()
-  ssl_due_date: Date;
-
-  @IsDate()
+  @ApiPropertyOptional({ example: '2024-07-24' })
   update_date: Date;
 }
