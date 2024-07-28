@@ -11,22 +11,26 @@ export class CompanyService {
     @InjectRepository(Company) private serverRepository: Repository<Company>,
   ) {}
   create(createCompanyDto: CreateCompanyDto) {
-    return this.serverRepository.create(createCompanyDto);
+    return this.serverRepository.save(createCompanyDto);
   }
 
   findAll() {
     return this.serverRepository.find();
   }
 
-  findOne(company_code: string) {
-    return this.serverRepository.findOne({ where: { company_code } });
+  findOne(id: number) {
+    return this.serverRepository.findOne({
+      where: { id },
+      relations: ['domain'],
+    });
   }
 
-  update(company_code: string, updateCompanyDto: UpdateCompanyDto) {
-    return this.serverRepository.update({ company_code }, updateCompanyDto);
+  update(id: number, updateCompanyDto: UpdateCompanyDto) {
+    return this.serverRepository.update({ id }, updateCompanyDto);
   }
 
-  remove(company_code: string) {
-    return this.serverRepository.delete({ company_code });
+  remove(id: number) {
+    // this.serverRepository.manager.query()
+    return this.serverRepository.delete({ id });
   }
 }
