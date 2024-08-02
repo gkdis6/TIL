@@ -1,0 +1,28 @@
+version: '1.0'
+
+services:
+  backend:
+    container_name: enterprise-monitoring-backend
+    build:
+      context: ./
+    ports:
+      - "6060:6060"
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=DEV
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=contents_dev
+      - POSTGRES_PASSWORD=contents_dev
+      - POSTGRES_DB=contentsdevdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
