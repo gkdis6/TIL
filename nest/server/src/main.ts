@@ -1,30 +1,50 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import configuration from './config/env/configuration';
+import Configuration from './config/env/configuration';
+import expressBasicAuth from 'express-basic-auth';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+const createGlobalPipes = () => {
+  return new ValidationPipe({
+    whitelist: true,
+    transform: true,
+    transformOptions: {
+      enableImplicitConversion: true,
+    },
+    exceptionFactory: (errors) => {
+      console.error('Validation errors:', errors);
+      return new BadRequestException('Validation failed');
+    },
+  });
+};
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      transform: true,
-      transformOptions: {
-        enableImplicitConversion: true,
-      },
-    }),
-  );
-
+const setupSwagger = (app) => {
   const config = new DocumentBuilder()
-    .setTitle(`${configuration().app} API Docs`)
-    .setDescription(`${configuration().app} api 문서입니다.`)
+    .setTitle(`${Configuration().app} API Docs`)
+    .setDescription(`${Configuration().app} api 문서입니다.`)
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(configuration().port);
+  app.use(
+    ['/docs'],
+    expressBasicAuth({
+      challenge: true,
+      users: {
+        [Configuration().swagger.user]: Configuration().swagger.password,
+      },
+    }),
+  );
+};
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(createGlobalPipes());
+  app.enableCors();
+  setupSwagger(app);
+  await app.listen(Configuration().port);
 }
 bootstrap();
